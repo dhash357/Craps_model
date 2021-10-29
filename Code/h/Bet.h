@@ -1,12 +1,13 @@
 #pragma once
+
+
 class Bet
 {
-
-
-
 public:
 
-	int Loser();
+	inline Bet();
+
+	inline int Loser();
 
 	int Winner();
 

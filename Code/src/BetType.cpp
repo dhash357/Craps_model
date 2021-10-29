@@ -1,5 +1,5 @@
-#include "Code/h/BetType.h"
-#include <array>;
+#include "/workspaces/Craps_model/Code/h/BetType.h"
+#include <array>
 
 
 
@@ -18,10 +18,11 @@
 //		Place			Place bets on a number
 //		
 
-BetType::BetType(){
-	winner[]
+inline BetType::BetType(){
+//	winner[]
+
 }
 
 
-BetType[CONST::PassAssigned][4]
+//BetType[CONST::PassAssigned][4]
 

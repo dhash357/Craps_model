@@ -2,12 +2,15 @@
 
 #include <list>
 
+#include "/workspaces/Craps_model/Code/h/Bet.h"
+
 class BetList
 {
 private:
-	list <Bet>	bets;
+	std::list <Bet>	bets;
 
 public:
-	int CheckBet()
+	inline BetList();
+	int CheckBet();
 };
 

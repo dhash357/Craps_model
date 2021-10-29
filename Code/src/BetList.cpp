@@ -1,7 +1,6 @@
-#include "Code/h/BetList.h"
 
-#include <list>
-
+#include "/workspaces/Craps_model/Code/h/BetList.h"
+#include "/workspaces/Craps_model/Code/h/Bet.h"
 
 //	Class 		BetList
 //
@@ -9,9 +8,10 @@
 //				all of the Bets that are currently on the table for the current 
 //				player
 
-BetList::BetList() {
+inline BetList::BetList() {
 
-	list <Bet>	bets;
+	std::list<Bet>	bets;
+
 }
 
 // CheckBet
@@ -20,10 +20,7 @@ BetList::BetList() {
 // 				deal with maintence of the list. 
 int BetList::CheckBet()
 {
-	int ret;		// Value returned from the roll of the die
 
-	ret = rand() % this->sides + 1;	// Get a random number from 1 to # of sides of the die
-
-	return (ret);
+	return (1);
 }
 
