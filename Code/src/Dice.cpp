@@ -1,6 +1,6 @@
 #include <ctime>
 #include <cstdlib>
-#include "..\h\Dice.h"
+#include "/workspaces/Craps_model/Code/h/Dice.h"
 
 
 Dice::Dice(int s) {

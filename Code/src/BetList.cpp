@@ -1,4 +1,4 @@
-#include "..\h\BetList.h"
+#include "Code/h/BetList.h"
 
 #include <list>
 

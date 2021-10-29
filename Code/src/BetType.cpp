@@ -1,4 +1,4 @@
-#include "../h/BetType.h"
+#include "Code/h/BetType.h"
 #include <array>;
 
 
