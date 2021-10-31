@@ -1,29 +1,38 @@
 CXX=g++
 CXXFLAGS= -Wall
 
-APP=Craps
-
 SRC=src
 H = h
 OBJ=obj
 BIN=bin
 
+APP=$(BIN)/Craps
+
+
 # Figure this out later to get a list of obj files based on the cpp files
 #SRCS = $(wildcard $(SRC)/*.cpp)
 #OBJS = $(patsubst $(SRC)/*.cpp , $(OBJ)/*.o , $(wildcard $(SRC)/*.cpp ))
 SRCS = $(SRC)/Bet.cpp $(SRC)/BetList.cpp $(SRC)/BetType.cpp $(SRC)/Craps.cpp $(SRC)/Dice.cpp
-OBJS = $(OBJ)/Bet.o $(OBJ)/BetList.o $(OBJ)/BetType.o $(OBJ)/Craps.o $(OBJ)/Dice.o
+OBJS = $(SRC)/Bet.o $(SRC)/BetList.o $(SRC)/BetType.o $(SRC)/Craps.o $(SRC)/Dice.o
 HS = $(H)/Bet.h $(H)/BetList.h $(H)/BetType.h $(H)/Craps.h $(H)/Dice.h
+#OBJS = Bet.o BetList.o BetType.o Craps.o Dice.o
+
+$(SRC)/%.o: $(SRC)/%.c $(H)/%.h
+	$(CXX) $(CXXFLAGS) -c $^
+
+$(APP) : $(OBJS)
+	$(CXX) $(CXXFLAGS) -o $@ $^
+
 
 # attempting Generic code
-$(BIN)/$(APP) : $(OBJS)  
-	echo $(OBJS)
-	echo $(BIN)/$(APP)
+#$(BIN)/$(APP) : $(OBJS)  
+#	echo $(OBJS)
+#	echo $(BIN)/$(APP)
 #	$(CXX) $(CXXFLAGS) -o $@ $<
-	$(CXX) $(CXXFLAGS) -o $@ $(OBJS)
+#	$(CXX) $(CXXFLAGS) -o $@ $(OBJS)
 
-$(OBJS) : $(SRCS) $(HS)
-	$(CXX) $(CXXFLAGS) -o $(OBJS) -c $(SRCS)
+#$(OBJS) : $(SRCS) $(HS)
+#	$(CXX) $(CXXFLAGS) -o $(OBJS) -c $(SRCS)
 
 
 # Test of linker command
