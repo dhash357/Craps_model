@@ -1,4 +1,4 @@
-#include "/workspaces/Craps_model/Code/h/Bet.h"
+#include "../h/Bet.h"
 
 // This is the code for the class bet
 

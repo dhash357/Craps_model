@@ -1,8 +1,10 @@
-#pragma once
+#ifndef BETLIST_H_
+#define BETLIST_H_
 
 #include <list>
 
-#include "/workspaces/Craps_model/Code/h/Bet.h"
+//#include "/workspaces/Craps_model/Code/h/Bet.h"
+#include "Bet.h"
 
 class BetList
 {
@@ -14,3 +16,4 @@ public:
 	int CheckBet();
 };
 
+#endif /* BETLIST_H_ */

@@ -1,5 +1,6 @@
-#pragma once
-
+//#pragma once
+#ifndef BET_H_
+#define BET_H_
 
 class Bet
 {
@@ -14,3 +15,5 @@ public:
 	int Assign();
 
 };
+
+#endif /* BET_H_ */
