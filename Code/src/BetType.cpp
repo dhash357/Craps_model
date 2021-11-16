@@ -1,9 +1,12 @@
 //#include <ctime>
 //#include <cstdlib>
 #include "../h/BetType.h"
+#include "../h/Craps.h"
+#include <vector>
 //#include "/workspaces/Craps_model/Code/h/BetType.h"
 //#include <bits/stdc++.h>
-//#include <iostream>
+#include <iostream>
+#include <algorithm> // Needed for find
 
 // BetType
 // Description	BetType is the type of each bet and all of the details 
@@ -54,7 +57,7 @@ char CheckWinner(int roll){
 
 int BetType::Check(){
 
-/*
+
   std::vector<int> vec { 10, 20, 30, 40 };
       
     // Iterator used to store the position 
@@ -72,21 +75,31 @@ int BetType::Check(){
     int ser = 30;
       
     // std::find function call
-    it = std::find (vec.begin(), vec.end(), ser);
+    it = find (vec.begin(), vec.end(), ser);
+
+        int index = distance (vec.begin (), it);
+    std::cout << "Element found at index/position : " << index << std::endl;
+
+
+    std::cout << "Begin() " << *vec.begin() << std::endl;
+    std::cout << "End () " << *vec.end() << std:: endl;
+    std::cout << "Value at Position " << *it << std:: endl;
+    
+
 
 
     if (it != vec.end())
     {
-        std::cout << "Element " << ser <<" found at position : " ;
+        std::cout << "Element " << ser <<" found at position : " << index << std:: endl;
 //        std::cout << it - vec.begin() << " (counting from zero)" << std::endl ;
-		std::cout << "end if BetType::Check";
+		  std::cout << "end if BetType::Check" << std:: endl;
     } else {
-        std::cout << "Element not found.\n\n";
+        std::cout << "Element not found.\n\n" << std:: endl;
 	}
-*/
 
-//	std::cout << "return from BetType::Check";
 
-    return 0;
+	std::cout << "return from BetType::Check" << std:: endl;
+
+    return retGood;
 }
 
