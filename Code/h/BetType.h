@@ -1,7 +1,8 @@
 #ifndef BETTYPE_H_
 #define BETTYPE_H_
 
-//#include <list>
+#include <vector>
+#include "Craps.h"
 
 // BetType.h
 class BetType
@@ -11,23 +12,23 @@ class BetType
 
 	protected:
 
- //       std::list<int> winner;
- //       std::list<int> loser;
- //       std::list<int> change;
+		// Variables
+        std::vector<int> winner;
+        std::vector<int> loser;
+        std::vector<int> change;
 
- //       const int GOOD = 0;
- //       const int BAD = -1;
-
+		// Methods
+        virtual int CheckWinner(int);
+ //       virtual int CheckLoser(int) = 0;
+ //       virtual int CheckAssign(int) = 0;
 
 	public:
 
-//		BetType();
+		// Methods
+		BetType(void);
+		virtual ~BetType() {};
 
- //       int CheckWinner(int);
- //       int CheckLoser(int);
- //       int CheckChange(int);
-
-		int Check(void);
+		int Check(int);
 
 
 };	//	Dice

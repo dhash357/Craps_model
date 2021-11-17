@@ -1,6 +1,7 @@
 #include <iostream>
 #include "../h/Dice.h"
-#include "../h/Pass.h"
+#include "../h/PassLine.h"
+
 
 //#include "/workspaces/Craps_model/Code/h/BetType.h"
 
@@ -10,7 +11,7 @@ int main() {
 	int total; 
 	//int retVal;
 
-	Pass passBet;
+	PassLine passLineBet;
 
 	Dice die(6);
 
@@ -23,7 +24,7 @@ int main() {
 	std::cout << "Value2 = " << value2 << std::endl;
 	std::cout << "Total = " << total << std::endl;
 
-	passBet.Check();
+	passLineBet.Check(total);
 
 	return (0);
 };	// main

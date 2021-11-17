@@ -4,7 +4,7 @@
 
 
 
-// Pass
+// PassLine
 // Description	Pass is a child of BetType. This is the initial bet when 
 //              a bet is placed on the Pass Line
 

@@ -2,8 +2,8 @@
 #define CRAPS_H_
 
 // Generic values
-const int retGood = 1;      // return Good - Success
-const int retBad = 0;       // return Bad - Failed
+const int retGood = 0;      // return Good - Success
+const int retBad = -1;      // return Bad - Failed
 
 
 
