@@ -23,13 +23,13 @@ Button::Button() {
  * 21/11/16 DJH Created
  * 
  */ 
-int Button::setState(int roll)
+int Button::SetState(int roll)
 {
 	int ret;		// Value returned from the roll of the die
 
     if (state == buttonOn) {
         if (roll == 7) {
-            buttonState (buttonOff);        // Turn the button off
+            ButtonState (buttonOff);        // Turn the button off
         }
 
     } else {
@@ -40,7 +40,7 @@ int Button::setState(int roll)
             case 8:
             case 9:
             case 10:
-                buttonState (buttonOn);
+                ButtonState (buttonOn);
                 break;
         }
     }
@@ -65,7 +65,7 @@ int Button::setState(int roll)
  * 
  */ 
 
-int Button::buttonState (int st) {
+int Button::ButtonState (int st) {
 
     state = st;
 
@@ -86,6 +86,6 @@ int Button::buttonState (int st) {
  * 
  */ 
 
-int Button::getState() {
+int Button::GetState() {
     return state;
 }   // getState

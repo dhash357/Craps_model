@@ -8,7 +8,10 @@ class PassLine : public BetType
     private:
 
     protected:
-        virtual int CheckWinner(int);
+        virtual int Winner(int);
+        virtual int Loser(int);
+//        virtual int Assign(int);
+
 
     public:
         PassLine(void);

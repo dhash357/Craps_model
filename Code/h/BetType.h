@@ -8,19 +8,23 @@
 class BetType
 {
 	private:
-		
+		// Variables
+
+		// Methods
 
 	protected:
 
 		// Variables
         std::vector<int> winner;
         std::vector<int> loser;
-        std::vector<int> change;
+        std::vector<int> assign;
 
 		// Methods
-        virtual int CheckWinner(int);
- //       virtual int CheckLoser(int) = 0;
- //       virtual int CheckAssign(int) = 0;
+        virtual int Winner(int);
+        virtual int Loser(int);
+//        virtual int Assign(int);
+		int CheckVector(std::vector<int> vec, int value);
+
 
 	public:
 

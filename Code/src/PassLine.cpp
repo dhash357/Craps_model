@@ -1,82 +1,104 @@
 #include <iostream>
-#include <algorithm> // Needed for find
 #include "../h/PassLine.h"
 #include "../h/Craps.h"
 
 
-// PassLine
-// Description	Pass is a child of BetType. This is the initial bet when 
-//              a bet is placed on the Pass Line
+/**
+ * Name: PassLine
+ *
+ * Prototype: int PassLine (void)
+ * 
+ * Desc: Constructor for the BetType PassLine
+ * 
+ * Param:   None
+ * 
+ * Create Date: 21/11/17
+ * Create By:   DJH
+ * 
+ * Modification:
+ * 211117 DJH Created
+ * 
+ */ 
 
 PassLine::PassLine(void) {
 
+    // Set Winning numbers into a vector
     winner.push_back(7);
     winner.push_back(11);
 
+    // Set Losing numbers into a vector
     loser.push_back(2);
     loser.push_back(3);
     loser.push_back(12);
 
-    change.push_back(4);
-    change.push_back(5);
-    change.push_back(6);
-    change.push_back(8);
-    change.push_back(9);
-    change.push_back(10);
+    // Set numbers to be reAssigned into a vector
+    assign.push_back(4);
+    assign.push_back(5);
+    assign.push_back(6);
+    assign.push_back(8);
+    assign.push_back(9);
+    assign.push_back(10);
 
 }   // PassLine::PassLine
 
 
-int PassLine::CheckWinner(int roll){
+/**
+ * Name: Winner
+ *
+ * Prototype: int Winner (int)
+ * 
+ * Desc: Winner is used to determine if the roll is a winner
+ * 
+ * Param:   int roll    Roll of the dice
+ * 
+ * Create Date: 21/11/17
+ * Create By:   DJH
+ * 
+ * Modification:
+ * 211117 DJH Created
+ * 
+ */ 
+int PassLine::Winner(int roll){
+    int retVal;             // Return value of method
 
-   	std::cout << "PassLine::CheckWinner Begin " << std::endl;
+   	std::cout << "PassLine::Winner Begin " << std::endl;
 
-      std::vector<int> vec { 10, 20, 30, 40 };
-      
-    // Iterator used to store the position 
-    // of searched element
-    std::vector<int>::iterator it;
-      
-    // Print Original Vector
-    std::cout << "Original vector :";
-    for (int i=0; i<(int)vec.size(); i++)
-        std::cout << " " << vec[i];
-          
-    std::cout << "\n";
-      
-    // Element to be searched
-    int ser = 30;
-      
-    // std::find function call
-    it = find (vec.begin(), vec.end(), ser);
+    // Check to see if the roll is in the vector winner
+    retVal = CheckVector(winner, roll);
 
-        int index = distance (vec.begin (), it);
-    std::cout << "Element found at index/position : " << index << std::endl;
+   	std::cout << "PassLine::Winner End Return " << retVal << std::endl;
 
+    return retVal;
+}   // Winner
 
-    std::cout << "Begin() " << *vec.begin() << std::endl;
-    std::cout << "End () " << *vec.end() << std:: endl;
-    std::cout << "Value at Position " << *it << std:: endl;
-    
+/**
+ * Name: Loser
+ *
+ * Prototype: int Loser (int)
+ * 
+ * Desc: Loser is used to determine if the roll is a loser
+ * 
+ * Param:   int roll    Roll of the dice
+ * 
+ * Create Date: 21/11/17
+ * Create By:   DJH
+ * 
+ * Modification:
+ * 211117 DJH Created
+ * 
+ */ 
+int PassLine::Loser(int roll){
+    int retVal;             // Return value of method
 
+   	std::cout << "PassLine::Loser Begin " << std::endl;
 
+    // Check to see if the roll is in the vector winner
+    retVal = CheckVector(loser, roll);
 
-    if (it != vec.end())
-    {
-        std::cout << "Element " << ser <<" found at position : " << index << std:: endl;
-//        std::cout << it - vec.begin() << " (counting from zero)" << std::endl ;
-		  std::cout << "end if BetType::Check" << std:: endl;
-    } else {
-        std::cout << "Element not found.\n\n" << std:: endl;
-	}
+   	std::cout << "PassLine::Loser End Return " << retVal << std::endl;
+
+    return retVal;
+}   // Loser
 
 
-	std::cout << "return from BetType::Check" << std:: endl;
-
-    return retGood;
-
-}   // CheckWinner
-
-
-//BetType[CONST::PassAssigned][4]
 

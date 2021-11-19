@@ -15,13 +15,13 @@ class Button
 
         int number;             // If the button is on. This is the number that it is on 4,5,6,8,9,10
 
-        int buttonState(int);    // Set the button state
+        int ButtonState(int);    // Set the button state
 
 	public:
 		Button(void);           // Constructor
 
-		int setState(int);      // Set the state of the button based on current state and roll number passed in
-        int getState();         // Get the state of the button currently
+		int SetState(int);      // Set the state of the button based on current state and roll number passed in
+        int GetState();         // Get the state of the button currently
         
 };
 
