@@ -8,13 +8,16 @@ const int retGood = 0;      // return Good - Success
 const int retBad = -1;      // return Bad - Failed
 
 const int retFound = 1;     // return that something was found in a search
-const int retNotFound = -1; // return that nothing was found in a search
+const int retNotFound = 0;  // return that nothing was found in a search
 
 const int retNoChange = 1;  // return that there is nothing to do to the bet
 const int retWinner = 2;    // return that the bet is a winner
 const int retLoser = 3;     // return that the bet is a loser
 const int retAssign = 4;    // return that the bet needs is reAssigned
 
+// Action to perform after roll for this bet
+const int betActNone = 0;   // No Action
+const int betActDel = 1;    // Delete bet
 
 const int btPassLine = 1;
 const int btComeLine = 2;

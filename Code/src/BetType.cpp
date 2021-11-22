@@ -37,7 +37,10 @@
  */ 
 
 BetType::BetType(void) {
-}
+} // BetType(void)
+
+BetType::BetType(int amt){
+} // BetType(int)
 
 /**
  * Name: Check
@@ -77,11 +80,10 @@ int BetType::Check(int roll){
       retVal = 3;
     }
 
-	  std::cout << "BetType::Check End return = " << retVal << std::endl;
   } // if statement
   
   return retVal;
-}
+} // Check
 
 /**
  * Name: CheckVector
@@ -103,17 +105,17 @@ int BetType::Check(int roll){
  */ 
 int BetType::CheckVector(std::vector<int> vec, int value){
     int retVal;             // Return value of method
-
+std::cout << "BetType::CheckVector Begin" << std::endl;
     // Iterator used to store the position 
     // of searched element
     std::vector<int>::iterator it;
-      
+
     // Determine if the roll was in the vector of winning numbers
     it = find (vec.begin(), vec.end(), value);
-
     // if the position is not equal to the end then it was found and is a winner
     if (it != vec.end())
     {
+
         retVal = retFound;
     } else {
         retVal = retNotFound;
@@ -196,3 +198,41 @@ int BetType::Assign(int roll) {
 } // Assign
 */
 
+/**
+ * Name: CalculateWiin
+ *
+ * Prototype: virtual int CalculateWin();
+ * 
+ * Desc: This method is used to calculate the amount of the win for each BetType
+ * 
+ * Param:   None
+ * 
+ * Create Date: 21/11/22
+ * Create By:   DJH
+ * 
+ * Modification:
+ * 211122 DJH Created
+ * 
+ */ 
+
+int BetType::CalculateWin(){
+  int retVal;   // Amount of the winnings
+
+  retVal = amount * oddsN / oddsD;
+
+ 	std::cout << "BetType::CalculateWin : Winning amount = " << retVal << std::endl;
+
+  return retVal;
+} // CalculateWin
+
+void BetType::PrintVector(std::vector<int> vec){
+
+  std::vector<int>::iterator it;
+ 
+  std::cout << "BetType::PrintVector vec list " ;      
+  for (it = vec.begin(); it != vec.end(); ++it) {
+    std::cout << *it << "  ";
+  }
+  std::cout << std::endl << "End list" << std::endl;      
+
+}

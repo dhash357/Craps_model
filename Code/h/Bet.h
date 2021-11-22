@@ -10,14 +10,15 @@ class Bet
 {
 	private:
 		// Variables
-		int amount;						// Amount of money for this bet
-		int betTypeId;					// What type of bet is this
-//		BetType betType;				// object of the class of BetType for the type of this bet
-//		BetType* betType;				// Pointer to the class of BetType for the type of this bet
+		int amount = 0;						// Amount of money for this bet
+		int betTypeId;						// What type of bet is this
 		std::unique_ptr<BetType> betType;
+		int win = 0;						// winning amount from the roll
+		int loss = 0;						// loss amount from the roll
+		int action;							// Action to be taken after the roll is over; (Delete or None)
 
 		// Methods
-		int CreateBetType(void);		// create the BetType object
+		int CreateBetType(void);			// create the BetType object
 
 	public:
 
@@ -25,7 +26,7 @@ class Bet
 
 		Bet(int, int);
 
-		int BetCheck (int);
+		int BetCheck (int);				// Check the Bet for winner, loser or reassign; pass in the roll
 
 
 };

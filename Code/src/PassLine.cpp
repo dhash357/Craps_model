@@ -20,7 +20,7 @@
  * 
  */ 
 
-PassLine::PassLine(void) {
+PassLine::PassLine(int amt) {
 
     // Set Winning numbers into a vector
     winner.push_back(7);
@@ -39,13 +39,21 @@ PassLine::PassLine(void) {
     assign.push_back(9);
     assign.push_back(10);
 
+    // Set Values for calculating odds
+    // This is the pass line bet so the odds are 1:1
+    oddsN = 1;
+    oddsD = 1;
+
+    amount = amt;
+
+
 }   // PassLine::PassLine
 
 
 /**
  * Name: Winner
  *
- * Prototype: int Winner (int)
+ * Prototype: virtual int Winner (int)
  * 
  * Desc: Winner is used to determine if the roll is a winner
  * 
@@ -68,13 +76,26 @@ int PassLine::Winner(int roll){
 
    	std::cout << "PassLine::Winner End Return " << retVal << std::endl;
 
+	// If the roll was found in the vector of winner This is a win
+    // Calculate the actual winnings. Assign the winnings to the retVal 
+    // to pass back to the Bet
+    if (retVal == retFound){
+
+    	std::cout << "PassLine::Winner call CalculateWin " << std::endl;
+       
+    	retVal = CalculateWin();
+    	std::cout << "PassLine::Winner return CalculateWin " << retVal << std::endl;
+    }
+
+   	std::cout << "  Winnings = " << retVal << std::endl;
+
     return retVal;
 }   // Winner
 
 /**
  * Name: Loser
  *
- * Prototype: int Loser (int)
+ * Prototype: virtual int Loser (int)
  * 
  * Desc: Loser is used to determine if the roll is a loser
  * 
@@ -95,10 +116,12 @@ int PassLine::Loser(int roll){
     // Check to see if the roll is in the vector winner
     retVal = CheckVector(loser, roll);
 
-   	std::cout << "PassLine::Loser End Return " << retVal << std::endl;
+    if (retVal == retFound){
+    	retVal = amount * -1;   // The losing amount is the amount of the bet
+    }
+
+   	std::cout << "  Losing amount = " << retVal << std::endl;
 
     return retVal;
 }   // Loser
-
-
 
