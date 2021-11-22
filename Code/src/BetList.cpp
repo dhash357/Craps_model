@@ -1,6 +1,6 @@
 
-#include "/workspaces/Craps_model/Code/h/BetList.h"
-#include "/workspaces/Craps_model/Code/h/Bet.h"
+#include "../h/BetList.h"
+#include "../h/Bet.h"
 
 //	Class 		BetList
 //
