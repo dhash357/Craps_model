@@ -9,6 +9,8 @@
 #include "../h/Craps.h"
 #include "../h/BetType.h"
 #include "../h/PassLine.h"
+#include "../h/Pass.h"
+#include "../h/Odds.h"
 
 // This is the code for the class bet
 
@@ -50,8 +52,7 @@ int Bet::CreateBetType(void){
 		case btPassLine:
 		{
 			betType = std::make_unique<PassLine>(amount);
-//			betType = PassLine();
-			std::cout << " Bet::CreateBetType Begin btPassLine" << std::endl;
+std::cout << " Bet::CreateBetType Begin btPassLine" << std::endl;
 
 
 //			if (!betType) {
@@ -64,10 +65,31 @@ int Bet::CreateBetType(void){
 		case btComeLine:
 			break;
 		case btPass:
+			betType = std::make_unique<Pass>(amount, betNum);
+std::cout << " Bet::CreateBetType Begin btPass" << std::endl;
+
+
+//			if (!betType) {
+//				std::cout << "betType was not created" << std::endl;
+//			}
+
+//			betType = new PassLine();
+
 			break;
 		case btCome:
 			break;
+
 		case btOdds:
+			betType = std::make_unique<Odds>(amount, betNum);
+std::cout << " Bet::CreateBetType Begin btOdds" << std::endl;
+
+
+//			if (!betType) {
+//				std::cout << "betType was not created" << std::endl;
+//			}
+
+//			betType = new PassLine();
+
 			break;
 		case btField:
 			break;

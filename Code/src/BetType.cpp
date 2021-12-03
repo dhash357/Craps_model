@@ -59,30 +59,30 @@ BetType::BetType(int amt){
  * 
  */ 
 int BetType::Check(int roll){
-  int retVal = retNotFound;
+    int retVal = retNotFound;
 
-	std::cout << "BetType::Check Begin " << std::endl;
+    std::cout << "BetType::Check Begin " << std::endl;
 
-  retVal = Winner(roll);
+    retVal = Winner(roll);
 
-  // If Winner was found return to calling program the return value for Winner
-  if (retVal == retFound){
-    retVal = retWinner;
-  }
-
-  // If the retVal is still retNotFound then there was nothing found from the winner 
-  // method so we need to keep going. 
-  if (retVal == retNotFound){
-    retVal = Loser(roll);
-
-    // If Loser was found return to calling program the return value for loser
+    // If Winner was found return to calling program the return value for Winner
     if (retVal == retFound){
-      retVal = 3;
+        retVal = retWinner;
     }
 
-  } // if statement
+    // If the retVal is still retNotFound then there was nothing found from the winner 
+    // method so we need to keep going. 
+    if (retVal == retNotFound){
+        retVal = Loser(roll);
+
+        // If Loser was found return to calling program the return value for loser
+        if (retVal == retFound){
+            retVal = 3;
+        }
+
+    } // if statement
   
-  return retVal;
+    return retVal;
 } // Check
 
 /**
@@ -119,7 +119,7 @@ std::cout << "BetType::CheckVector Begin" << std::endl;
         retVal = retFound;
     } else {
         retVal = retNotFound;
-	}
+    }
 
     return retVal;
 
@@ -144,9 +144,32 @@ std::cout << "BetType::CheckVector Begin" << std::endl;
  */ 
 int BetType::Winner(int roll) {
 
-	std::cout << "BetType::Winner Begin : This should never be called method is not devined in actual BetType " << std::endl;
+    int retVal;             // Return value of method
 
-  return retBad;
+std::cout << "Pass::Winner Begin " << std::endl;
+
+    // Check to see if the roll is in the vector winner
+    retVal = CheckVector(winner, roll);
+
+std::cout << "Pass:Winner End Return " << retVal << std::endl;
+
+    // If the roll was found in the vector of winner This is a win
+    // Calculate the actual winnings. Assign the winnings to the retVal 
+    // to pass back to the Bet
+    if (retVal == retFound){
+
+std::cout << "Pass::Winner call CalculateWin " << std::endl;
+       
+        retVal = CalculateWin();
+std::cout << "Pass::Winner return CalculateWin " << retVal << std::endl;
+    }
+
+std::cout << "  Winnings = " << retVal << std::endl;
+
+    // Return the win amount if found
+    // Return constant retNotFound if the roll was not found in winner array
+    return retVal;
+
 } // Winner
 
 /**
@@ -167,10 +190,23 @@ int BetType::Winner(int roll) {
  * 
  */ 
 int BetType::Loser(int roll) {
+    int retVal;             // Return value from methods called; 
 
-	std::cout << "BetType::Loser Begin : This should never be called method is not devined in actual BetType" << std::endl;
+std::cout << "PassLine::Loser Begin " << std::endl;
 
-  return retBad;
+    // Check to see if the roll is in the vector winner
+    retVal = CheckVector(loser, roll);
+
+    if (retVal == retFound){
+      retVal = amount * -1;   // The losing amount is the amount of the bet
+    }
+
+std::cout << "  Losing amount = " << retVal << std::endl;
+
+    // Return the loss amount if found
+    // Return constant retNotFound if the roll was not found in loser array
+    return retVal;
+
 } // Loser
 
 /**
@@ -190,13 +226,14 @@ int BetType::Loser(int roll) {
  * 211117 DJH Created
  * 
  *
+ */
 int BetType::Assign(int roll) {
 
-	std::cout << "BetType::Assign Begin : This should never be called method is not devined in actual BetType" << std::endl;
+  std::cout << "BetType::Assign Begin : This should never be called method is not devined in actual BetType" << std::endl;
 
   return retBad;
 } // Assign
-*/
+
 
 /**
  * Name: CalculateWiin
@@ -216,14 +253,19 @@ int BetType::Assign(int roll) {
  */ 
 
 int BetType::CalculateWin(){
-  int retVal;   // Amount of the winnings
+    int retVal;   // Amount of the winnings
 
-  retVal = amount * oddsN / oddsD;
+    retVal = amount * oddsN / oddsD;
 
- 	std::cout << "BetType::CalculateWin : Winning amount = " << retVal << std::endl;
+std::cout << "BetType::CalculateWin : Winning amount = " << retVal << std::endl;
 
-  return retVal;
+    return retVal;
 } // CalculateWin
+
+
+////////////////////////////////////////////////////////////////////////////////////
+// Debug scripts
+////////////////////////////////////////////////////////////////////////////////////
 
 void BetType::PrintVector(std::vector<int> vec){
 

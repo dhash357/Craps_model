@@ -12,6 +12,8 @@ class Bet
 		// Variables
 		int amount = 0;						// Amount of money for this bet
 		int betTypeId;						// What type of bet is this
+		int betNum;							// Number that the bet is based on. This is a roll number. 
+		
 		std::unique_ptr<BetType> betType;
 		int win = 0;						// winning amount from the roll
 		int loss = 0;						// loss amount from the roll

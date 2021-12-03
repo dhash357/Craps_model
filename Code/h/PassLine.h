@@ -14,8 +14,6 @@ class PassLine : public BetType
         // Variables
 
         // Methods
-        virtual int Winner(int roll);
-        virtual int Loser(int roll);
 //        virtual int Assign(int);
 
 

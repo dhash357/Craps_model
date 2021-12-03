@@ -40,6 +40,7 @@ int main() {
 			break;
 		
 		default:
+			std::cout << total << " retVal " << retVal << " was not found." << std::endl;
 			break;
 	}
 

@@ -23,9 +23,9 @@ class BetType
 		int amount;					// Amount of the bet
 
 		// Methods
-        virtual int Winner(int);
+        int Winner(int);
         virtual int Loser(int);
-//        virtual int Assign(int);
+        virtual int Assign(int);
 		virtual int CalculateWin(void);	// Determine the amount of money that is won using the Amount of the Bet being passed in
 
 		int CheckVector(std::vector<int>, int);
@@ -34,8 +34,10 @@ class BetType
 	public:
 
 		// Methods
-		BetType(void);					// generic Constructor 
+		BetType(void);						// generic Constructor 
 		BetType(int amount);				// Constructor pass in the amount of the bet when constructed
+		BetType(int amount, int number);	// Constructor with amount and number passed in for constructor
+
 		virtual ~BetType() {};
 
 		int Check(int);
