@@ -111,7 +111,7 @@ std::cout << "BetType::CheckVector Begin" << std::endl;
     std::vector<int>::iterator it;
 
     // Determine if the roll was in the vector of winning numbers
-    it = find (vec.begin(), vec.end(), value);
+    it = find(vec.begin(), vec.end(), value);
     // if the position is not equal to the end then it was found and is a winner
     if (it != vec.end())
     {
