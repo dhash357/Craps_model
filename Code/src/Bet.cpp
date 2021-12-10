@@ -19,14 +19,61 @@
 //	Description	Bet is the class that defines each individual bet. Each bet will
 //				be stored in a BetList
 
-Bet::Bet(int amt, int bt) {
-	amount = amt;
-	betTypeId = bt;
 
-	CreateBetType();
+/**
+* Name: Bet
+*   
+* Prototype: Bet(int, int)
+* 
+* Desc: Constructor for Bet class. This one is for bets which are not attached to a particular number
+* 
+* Param: int amt - Amount of the bet in dollars
+*        int bt - betTypeId is the type of bet. Defined in craps.h
+*
+* Return:  
+* 
+* Create Date: yy/mm/dd
+* Create By: David Hash  
+* 
+* Modification:
+*   yy/mm/dd   DJH    Created
+* 
+*/
+Bet::Bet(int amt, int bt) {
+	betstr.amount = amt;
+	betstr.betTypeId = bt;
+    betstr.betNum = 0;      // There is no bet number for some bets
+//	CreateBetType();
 
 };
 
+/**
+* Name: Bet
+*   
+* Prototype: Bet(int, int, int)
+* 
+* Desc: Constructor for Bet class. This one is for bets which are not attached to a particular number
+* 
+* Param: int amt - Amount of the bet in dollars
+*        int bt - betTypeId is the type of bet. Defined in craps.h
+*        int bn - betNum is the number that this bet is associated with
+*
+* Return:  
+* 
+* Create Date: yy/mm/dd
+* Create By: David Hash  
+* 
+* Modification:
+*   yy/mm/dd   DJH    Created
+* 
+*/
+Bet::Bet(int amt, int bt, int bn) {
+	betstr.amount = amt;
+	betstr.betTypeId = bt;
+    betstr.betNum = bn;      
+//	CreateBetType();
+
+};
 
 /**
  * Name: CreateBetType
@@ -48,10 +95,10 @@ Bet::Bet(int amt, int bt) {
 int Bet::CreateBetType(void){
 	int ret = retGood;
 	
-	switch (betTypeId){
+	switch (betstr.betTypeId){
 		case btPassLine:
 		{
-			betType = std::make_unique<PassLine>(amount);
+			betType = std::make_unique<PassLine>(betstr.amount);
 std::cout << " Bet::CreateBetType Begin btPassLine" << std::endl;
 
 
@@ -65,7 +112,7 @@ std::cout << " Bet::CreateBetType Begin btPassLine" << std::endl;
 		case btComeLine:
 			break;
 		case btPass:
-			betType = std::make_unique<Pass>(amount, betNum);
+			betType = std::make_unique<Pass>(betstr.amount, betstr.betNum);
 std::cout << " Bet::CreateBetType Begin btPass" << std::endl;
 
 
@@ -80,7 +127,7 @@ std::cout << " Bet::CreateBetType Begin btPass" << std::endl;
 			break;
 
 		case btOdds:
-			betType = std::make_unique<Odds>(amount, betNum);
+			betType = std::make_unique<Odds>(betstr.amount, betstr.betNum);
 std::cout << " Bet::CreateBetType Begin btOdds" << std::endl;
 
 

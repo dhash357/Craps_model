@@ -6,13 +6,21 @@
 #include <utility>
 #include "BetType.h"
 
+struct sBet     // Structure of the bet including variables
+{
+	/* data */
+	int amount = 0;						// Amount of money for this bet
+	int betTypeId;						// What type of bet is this
+	int betNum;							// Number that the bet is based on. This is a roll number. 
+
+};
+
+
 class Bet
 {
 	private:
 		// Variables
-		int amount = 0;						// Amount of money for this bet
-		int betTypeId;						// What type of bet is this
-		int betNum;							// Number that the bet is based on. This is a roll number. 
+        sBet betstr;
 		
 		std::unique_ptr<BetType> betType;
 		int win = 0;						// winning amount from the roll
@@ -26,7 +34,8 @@ class Bet
 
 //		std::unique_ptr<BetType> betType = NULL;
 
-		Bet(int, int);
+		Bet(int, int);          // params int amount, int betTypeId
+		Bet(int, int, int);     // params int amount, int betTypeId, int betNum
 
 		int BetCheck (int);				// Check the Bet for winner, loser or reassign; pass in the roll
 

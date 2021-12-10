@@ -1,8 +1,16 @@
 #include <vector>
 #include <algorithm>          // Needed for find
-
+#include <stdio.h>
 #include "../h/BetList.h"
 #include "../h/Bet.h"
+#include "../h/Craps.h"
+
+Bet bet1(5, btPass, 4);
+Bet bet2(25, btOdds, 4);
+Bet bet3(5, btCome, 6);
+Bet bet4(25, btOdds, 6);
+Bet bet5(5, btComeLine, 0);
+
 
 /**
  * Name: BetList
@@ -105,14 +113,48 @@ int BetList::Add(Bet bet)
 *   21/12/08   DJH    Created
 * 
 */
-std::vector<Bet>::iterator BetList::FindBet(Bet bet)
+std::vector<Bet>::iterator BetList::FindBet(sBet betCrit)
 {
-	std::vector<Bet>::iterator it2;
+	std::vector<Bet>::iterator begin;
+	std::vector<Bet>::iterator end;
+	
+	std::vector<Bet>::iterator it;
 
 //https://stackoverflow.com/questions/16798535/finding-an-element-in-a-vector-of-structures
-//	it2 = std::find_if(this->bets.begin(), this->bets.end(), [](bets){
-//                                                                                            if (val % 3 == 0)
-//                                                                                                return true;
-//                                                                                            return false;});
+//https://thispointer.com/using-stdfind-stdfind_if-with-user-defined-classes/
+//https://stackoverflow.com/questions/22660448/using-predicate-in-find-if
 
-}	// FindBet
+    std::vector<Bet> bets;
+	begin = bets.begin();
+	end = bets.end();
+
+std::string username = "Nicholas";    
+std::find_if(userlist.begin(), userlist.end(), [username](Nick const& n){
+    return n.username == username;
+});
+
+std::find_if(begin, 
+             end, 
+             [&cb = bet]
+             (const sBet& betCrit) -> bool { 
+				 if ((cb.betstr.amount == betCrit.amount) &&
+				     (cb.betstr.betTypeId == betCrit.betTypeId) &&
+					 (cb.betstr.betNum == betCrit.betNum))
+					 {return true;}
+				 else
+				 	{return false;}						// Amount of money for this bet
+             }); 
+
+
+}   // FindBet
+// Junk function for testing
+void loadData(void)
+{
+    Bet bet1(5, btPass, 4);
+    Bet bet2(25, btOdds, 4);
+    Bet bet3(5, btCome, 6);
+    Bet bet4(25, btOdds, 6);
+    Bet bet5(5, btComeLine, 0);
+
+
+}   // loadData
