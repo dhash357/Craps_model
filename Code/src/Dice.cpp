@@ -1,24 +1,45 @@
-#include <ctime>
-#include <cstdlib>
+#include <vector>
+
 #include "../h/Dice.h"
+//#include "../h/Die.h"
+//#include "../h/Craps.h"
 
+/**
+ * Name: Dice
+ *
+ * Prototype: Void Dice(int numDice, int sides)
+ * 
+ * Desc: This simulates the roll of 2 dies each has 6 sides
+ * 
+ * Param:   void
+ * 
+ * Create Date: 21/12/22
+ * Create By:   DJH
+ * 
+ * Modification:
+ * 
+ */ 
+Dice::Dice(int num, int s){
 
-Dice::Dice(int s) {
-		int seed;
+    int i;
+    sides = s;
+    numDice = num;
+    
 
-		this->sides = s;
+    for( i = 0; i < numDice; i++){
+        Die die(sides);
+        dice.push_back(die);
+    }
 
-		// seed the random number function
-		seed = time(NULL);	// TODO 210808 DJH	Record the seed in the output file So we can always run the simulation again exactly the same
-		srand(seed);
+}   // Dice
 
-	}
-int Dice::Roll()
-{
-	int ret;		// Value returned from the roll of the die
+int Dice::Roll(sRoll& roll){
+    int i;
 
-	ret = rand() % this->sides + 1;	// Get a random number from 1 to # of sides of the die
-	
-	return (ret);
-}
+    roll.valueL = dice[dieLeft].Roll();
+    roll.valueR = dice[dieRight].Roll();
+    roll.total = roll.valueL + roll.valueR;
+ 
+
+}   // Roll
 

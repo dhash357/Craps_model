@@ -1,48 +1,32 @@
-#include <iostream>
-#include "../h/Dice.h"
-#include "../h/Bet.h"
-#include "../h/PassLine.h"
+#include "../h/Craps.h"
+
+//Craps::Craps(void){
+//}   // Craps
 
 
-int main() {
-	int value1;
-	int value2;
-	int total; 
-	int retVal;
+/**
+ * Name: Roll
+ *
+ * Prototype: int CrapsRoll(void)
+ * 
+ * Desc: This simulates the roll of 2 dies each has 6 sides
+ * 
+ * Param:   void
+ * 
+ * Create Date: 21/12/22
+ * Create By:   DJH
+ * 
+ * Modification:
+ * 
+ */ 
+int Craps::Roll(){
 
-	Bet bet(5, btPassLine);
+    int retVal;
+    sRoll roll;
 
-	Dice die(6);
+    retVal = dice.Roll(roll);
 
-	value1 = die.Roll();
-	value2 = die.Roll();
 
-	total = value1 + value2;
 
-	std::cout << "Value1 = " << value1 << std::endl;
-	std::cout << "Value2 = " << value2 << std::endl;
-	std::cout << "Total = " << total << std::endl;
+}   // CrapsRoll
 
-	retVal = bet.BetCheck(total);
-
-	switch (retVal)
-	{
-		case retWinner:
-			std::cout << total << " is a winner." << std::endl;
-			break;
-	
-		case retLoser:
-			std::cout << total << " is a loser." << std::endl;
-			break;
-		
-		case retAssign:
-			std::cout << total << " is reAssigned." << std::endl;
-			break;
-		
-		default:
-			std::cout << total << " retVal " << retVal << " was not found." << std::endl;
-			break;
-	}
-
-	return (0);
-};	// main

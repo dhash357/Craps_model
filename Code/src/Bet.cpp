@@ -76,6 +76,66 @@ Bet::Bet(int amt, int bt, int bn) {
 };
 
 /**
+ * Name: GetAmount
+ *
+ * Prototype: int GetAmount (void)
+ * 
+ * Desc: Returns the Amount stored in the betstr structure
+ * 
+ * Param:   None
+ * 
+ * Create Date: 21/12/22
+ * Create By:   DJH
+ * 
+ * Modification:
+ * 21/12/22 DJH Created
+ * 
+ */ 
+int Bet::GetAmount (void){
+    return betstr.amount;
+}   // GetAmount
+
+/**
+ * Name: GetBetTypeId
+ *
+ * Prototype: int GetGetBetTypeId (void)
+ * 
+ * Desc: Returns the betTypeId stored in the betstr structure
+ * 
+ * Param:   None
+ * 
+ * Create Date: 21/12/22
+ * Create By:   DJH
+ * 
+ * Modification:
+ * 21/12/22 DJH Created
+ * 
+ */ 
+int Bet::GetBetTypeId (void){
+    return betstr.betTypeId;
+}   // GetBetTypeId
+
+/**
+ * Name: GetBetNum
+ *
+ * Prototype: int GetBetNum (void)
+ * 
+ * Desc: Returns the betNum stored in the betstr structure
+ * 
+ * Param:   None
+ * 
+ * Create Date: 21/12/22
+ * Create By:   DJH
+ * 
+ * Modification:
+ * 21/12/22 DJH Created
+ * 
+ */ 
+int Bet::GetBetNum (void){
+    return betstr.betNum;
+}   // GetBetTypeId
+
+/**
  * Name: CreateBetType
  *
  * Prototype: void CreateBetType (void)

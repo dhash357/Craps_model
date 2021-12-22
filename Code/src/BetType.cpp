@@ -42,6 +42,9 @@ BetType::BetType(void) {
 BetType::BetType(int amt){
 } // BetType(int)
 
+BetType::BetType(int amt, int num){
+} // BetType(int, int)
+
 /**
  * Name: Check
  *

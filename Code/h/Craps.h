@@ -1,7 +1,7 @@
 #ifndef CRAPS_H_
 #define CRAPS_H_
 
-//#include <string>
+#include "../h/Dice.h"
 
 // Generic values
 const int retGood = 0;      // return Good - Success
@@ -29,7 +29,27 @@ const int btOneTime = 7;
 const int btHardways = 8;
 const int btPlace = 9;
 
+const int dieLeft = 0;  // Array index for left die
+const int dieRight = 1; // Array index for right die
 
+
+
+// Craps
+class Craps
+{
+	private:
+		int sides;
+
+        // Create vector of dice
+
+        Dice dice;
+
+	public:
+        Craps(void);
+        int Roll(void);
+
+
+};	//	Craps
 
 
 

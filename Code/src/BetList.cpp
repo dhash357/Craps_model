@@ -1,6 +1,7 @@
 #include <vector>
 #include <algorithm>          // Needed for find
 #include <stdio.h>
+#include <iostream>
 #include "../h/BetList.h"
 #include "../h/Bet.h"
 #include "../h/Craps.h"
@@ -32,10 +33,11 @@ Bet bet5(5, btComeLine, 0);
  *	21/12/08	DJH		Created
  * 
  */ 
+//inline BetList::BetList(){
+BetList::BetList() {
 
-inline BetList::BetList() {
-
-	std::vector<Bet>	bets;
+    // Just for testing load fake data into the vector
+    LoadData();
 
 }
 
@@ -86,7 +88,7 @@ int BetList::CheckBet()
 *
 * 
 */
-int BetList::Add(Bet bet) 
+int BetList::Add(Bet& bet) 
 {
 	int retVal = retGood;	// Assume return good value
 
@@ -113,6 +115,7 @@ int BetList::Add(Bet bet)
 *   21/12/08   DJH    Created
 * 
 */
+
 std::vector<Bet>::iterator BetList::FindBet(sBet betCrit)
 {
 	std::vector<Bet>::iterator begin;
@@ -124,37 +127,57 @@ std::vector<Bet>::iterator BetList::FindBet(sBet betCrit)
 //https://thispointer.com/using-stdfind-stdfind_if-with-user-defined-classes/
 //https://stackoverflow.com/questions/22660448/using-predicate-in-find-if
 
-    std::vector<Bet> bets;
+//    std::vector<Bet> bets;
 	begin = bets.begin();
 	end = bets.end();
 
-std::string username = "Nicholas";    
-std::find_if(userlist.begin(), userlist.end(), [username](Nick const& n){
-    return n.username == username;
-});
-
-std::find_if(begin, 
+// find_if uses a Lambda function to do the find. 
+//          betCrit is passed in by capture
+//          bets is passed in by reference
+/*
+    it = std::find_if(begin, 
              end, 
-             [&cb = bet]
-             (const sBet& betCrit) -> bool { 
-				 if ((cb.betstr.amount == betCrit.amount) &&
-				     (cb.betstr.betTypeId == betCrit.betTypeId) &&
-					 (cb.betstr.betNum == betCrit.betNum))
+             [betCrit]
+             (const Bet& bets) -> bool { 
+				 if ((bets.GetAmount() == betCrit.amount) &&
+				     (bets.GetBetTypeId() == betCrit.betTypeId) &&
+					 (bets.GetBetNum() == betCrit.betNum))
+					 {return true;}
+				 else
+				 	{return false;}						// Amount of money for this bet
+             }); 
+*/
+    it = std::find_if(begin, 
+             end, 
+             [betCrit]
+             (Bet& b) -> bool { 
+				 if ((b.GetAmount() == betCrit.amount) &&
+				     (b.GetBetTypeId() == betCrit.betTypeId) &&
+					 (b.GetBetNum() == betCrit.betNum))
 					 {return true;}
 				 else
 				 	{return false;}						// Amount of money for this bet
              }); 
 
-
+    return it;
 }   // FindBet
 // Junk function for testing
-void loadData(void)
+void BetList::LoadData(void)
 {
+    int retVal;
     Bet bet1(5, btPass, 4);
+    retVal = Add(bet1);
     Bet bet2(25, btOdds, 4);
+    retVal = Add(bet2);
     Bet bet3(5, btCome, 6);
+    retVal = Add(bet3);
     Bet bet4(25, btOdds, 6);
+    retVal = Add(bet4);
     Bet bet5(5, btComeLine, 0);
+    retVal = Add(bet5);
 
+    if (retVal != 0){
+        std::cout << "Error in load data\n";
+    }
 
 }   // loadData

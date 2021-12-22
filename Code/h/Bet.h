@@ -38,7 +38,9 @@ class Bet
 		Bet(int, int, int);     // params int amount, int betTypeId, int betNum
 
 		int BetCheck (int);				// Check the Bet for winner, loser or reassign; pass in the roll
-
+        int GetAmount (void);               // Return the bet amount from betstr
+        int GetBetTypeId (void);            // Return the bet BetTypeId from betstr
+        int GetBetNum (void);               // Return the bet BetNum from betstr
 
 };
 
