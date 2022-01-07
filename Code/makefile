@@ -6,7 +6,7 @@ H = h
 OBJ=$(SRC)
 BIN=bin
 
-APP=$(BIN)/Craps
+APP=$(BIN)/Main
 
 
 # Figure this out later to get a list of obj files based on the cpp files

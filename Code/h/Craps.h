@@ -42,10 +42,17 @@ class Craps
 
         // Create vector of dice
 
-        Dice dice;
+        Dice dice = {2, 6};
 
 	public:
+        // Generic Constructor
         Craps(void);
+
+        // Generic Destructor
+        ~Craps();
+
+
+        // Functions
         int Roll(void);
 
 

@@ -19,6 +19,31 @@
 //	Description	Bet is the class that defines each individual bet. Each bet will
 //				be stored in a BetList
 
+/**
+* Name: Bet
+*   
+* Prototype: Bet(int, int)
+* 
+* Desc: Constructor for Bet class. This one is for bets which are not attached to a particular number
+* 
+* Param: int amt - Amount of the bet in dollars
+*        int bt - betTypeId is the type of bet. Defined in craps.h
+*
+* Return:  
+* 
+* Create Date: 21/12/29
+* Create By: David Hash  
+* 
+* Modification:
+*   21/12/29   DJH    Created
+* 
+*/
+Bet::Bet() {
+	betstr.amount = 0;
+	betstr.betTypeId = 0;
+    betstr.betNum = 0;      // There is no bet number for some bets
+}
+//	Bet;
 
 /**
 * Name: Bet
@@ -32,11 +57,11 @@
 *
 * Return:  
 * 
-* Create Date: yy/mm/dd
+* Create Date: 21/12/24
 * Create By: David Hash  
 * 
 * Modification:
-*   yy/mm/dd   DJH    Created
+*   21/12/24   DJH    Created
 * 
 */
 Bet::Bet(int amt, int bt) {
@@ -60,20 +85,43 @@ Bet::Bet(int amt, int bt) {
 *
 * Return:  
 * 
-* Create Date: yy/mm/dd
+* Create Date: 21/12/24
 * Create By: David Hash  
 * 
 * Modification:
-*   yy/mm/dd   DJH    Created
+*   21/12/24   DJH    Created
 * 
 */
 Bet::Bet(int amt, int bt, int bn) {
 	betstr.amount = amt;
 	betstr.betTypeId = bt;
     betstr.betNum = bn;      
-//	CreateBetType();
 
-};
+
+};  //	Bet::Bet
+
+/**
+* Name: Bet
+*   
+* Prototype: ~Bet(int, int, int)
+* 
+* Desc: Constructor for Bet class. This one is for bets which are not attached to a particular number
+* 
+* Param: int amt - Amount of the bet in dollars
+*        int bt - betTypeId is the type of bet. Defined in craps.h
+*        int bn - betNum is the number that this bet is associated with
+*
+* Return:  
+* 
+* Create Date: 21/12/24
+* Create By: David Hash  
+* 
+* Modification:
+*   21/12/24   DJH    Created
+* 
+*/
+Bet::~Bet() {
+};  //	Bet::~Bet
 
 /**
  * Name: GetAmount

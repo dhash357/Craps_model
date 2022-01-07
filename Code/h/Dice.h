@@ -24,8 +24,20 @@ class Dice
         std::vector<Die> dice;
 
 	public:
+
+        // Generic Constructor
+        Dice();
+
+        // Overloaded Constructors
 	    Dice(int numDice, int s);
 
+        // Accessor Functions
+        int GetSides (void);                // Return the number of sides on each die
+        int GetNumDice (void);              // Return the number of dice
+
+        // Mutator Functions
+
+        // Functions
 		int Roll(sRoll& roll);
 
 };	//	Dice

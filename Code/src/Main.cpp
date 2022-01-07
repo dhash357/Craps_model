@@ -11,13 +11,20 @@ int main() {
 //	int total; 
 	int retVal = retGood;
 
+std::cout << "This is the first words out of the app!" << std::endl;
 
-	BetList listOfBets;
+	// Create a list of bets and load it with the first bet
+    BetList listOfBets;
 
+    // Create the dice. 2 dies with 6 sides
 	Dice dice(2, 6);
 
+    // Place bets
+
+    // Roll the dice.
     craps.Roll();
 
+    // Check Bets for results; Win, Lose, Place new bet
     listOfBets.CheckBet();
     
 /*	std::cout << "Value1 = " << value1 << std::endl;

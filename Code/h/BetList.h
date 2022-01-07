@@ -11,16 +11,21 @@ private:
 	std::vector<Bet>	bets;
 
 public:
-//	inline BetList();
-    BetList();
-	int CheckBet();
-	int Add(Bet&);
+    // Default Constructor
+    BetList(void);
+
+    // Default Destructor
+    ~BetList();
+
+	// Standard Functions
+    int CheckBet(void);
+	int Add(const Bet&);
 	int Remove(Bet);
-	std::vector<Bet>::iterator FindBet(sBet bet);
+	std::vector<Bet>::iterator FindBet(sBet);
 
 
     // Just for testing Loading fake data
-    void LoadData(void);
+    void LoadData(std::vector<Bet>& );
 };
 
 #endif /* BETLIST_H_ */

@@ -34,13 +34,27 @@ class Bet
 
 //		std::unique_ptr<BetType> betType = NULL;
 
-		Bet(int, int);          // params int amount, int betTypeId
+        // Default constructor
+        Bet(void);                  
+		
+        // Overload constructors
+        Bet(int, int);          // params int amount, int betTypeId
 		Bet(int, int, int);     // params int amount, int betTypeId, int betNum
 
-		int BetCheck (int);				// Check the Bet for winner, loser or reassign; pass in the roll
+        // Destructor
+        ~Bet();
+
+        // Accessor Functions
         int GetAmount (void);               // Return the bet amount from betstr
         int GetBetTypeId (void);            // Return the bet BetTypeId from betstr
         int GetBetNum (void);               // Return the bet BetNum from betstr
+
+        // Mutator Functions
+
+
+        // Functions
+		int BetCheck (int);				// Check the Bet for winner, loser or reassign; pass in the roll
+        
 
 };
 
