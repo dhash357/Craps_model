@@ -13,7 +13,6 @@ int main() {
 
 std::cout << "This is the first words out of the app!" << std::endl;
 
-	// Create a list of bets and load it with the first bet
     BetList listOfBets;
 
     // Create the dice. 2 dies with 6 sides

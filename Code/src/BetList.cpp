@@ -1,4 +1,4 @@
-#include <vector>
+#include <deque>
 #include <algorithm>          // Needed for find
 #include <stdio.h>
 #include <iostream>
@@ -6,13 +6,6 @@
 #include "../h/Bet.h"
 #include "../h/Craps.h"
 
-/*
-Bet bet1(5, btPass, 4);
-Bet bet2(25, btOdds, 4);
-Bet bet3(5, btCome, 6);
-Bet bet4(25, btOdds, 6);
-Bet bet5(5, btComeLine, 0);
-*/
 
 /**
  * Name: BetList
@@ -37,9 +30,11 @@ Bet bet5(5, btComeLine, 0);
 //inline BetList::BetList(){
 BetList::BetList() {
 
+    std::cout << "BetList::BetList() " << std::endl;
 
     // Just for testing load fake data into the vector
-    void LoadData(std::vector<Bet>& bets);
+//    void LoadData(std::vector<Bet>& bets);
+    LoadData();
 
 }
 
@@ -87,8 +82,20 @@ BetList::~BetList() {
 int BetList::CheckBet()
 {
 	int retVal = retGood;	// Assume return good value
+//    std::vector<Bet>::size_type i;
 
 std::cout << "BetList::CheckBet()\n";
+
+//std::cout << "BetList Size " << bets.size() << std::endl;
+
+/*
+    for (i = 0; i < bets.size(); i++){
+        std::cout << " Bet " << i << std::endl;
+        std::cout << "     Amount " << bets[i].GetAmount() << std::endl;
+        std::cout << "     Type " << bets[i].GetBetTypeId() << std::endl;
+        std::cout << "     Number " << bets[i].GetBetNum() << std::endl;
+    }
+*/
 
 	return (retVal);
 }	//	BetList::ChekcBet
@@ -113,11 +120,11 @@ std::cout << "BetList::CheckBet()\n";
 *
 * 
 */
-int BetList::Add(const Bet& bet) 
+int BetList::Add(Bet bet) 
 {
 	int retVal = retGood;	// Assume return good value
 
-//	bets.push_back(bet);
+	this->bets.push_back(bet);
 
 	return (retVal);
 }	// BetList::Add
@@ -141,12 +148,12 @@ int BetList::Add(const Bet& bet)
 * 
 */
 
-std::vector<Bet>::iterator BetList::FindBet(sBet betCrit)
+std::deque<Bet>::iterator BetList::FindBet(sBet betCrit)
 {
-	std::vector<Bet>::iterator begin;
-	std::vector<Bet>::iterator end;
+	std::deque<Bet>::iterator begin;
+	std::deque<Bet>::iterator end;
 	
-	std::vector<Bet>::iterator it;
+	std::deque<Bet>::iterator it;
 
 //https://stackoverflow.com/questions/16798535/finding-an-element-in-a-vector-of-structures
 //https://thispointer.com/using-stdfind-stdfind_if-with-user-defined-classes/
@@ -191,22 +198,46 @@ std::vector<Bet>::iterator BetList::FindBet(sBet betCrit)
 
 
 // Junk function for testing
-void BetList::LoadData(std::vector<Bet>& newBetList)
+//void BetList::LoadData(std::vector<Bet>& newBetList)
+void BetList::LoadData()
 {
     int retVal = 0;
     
+/*
+    This works just generic int in the array
+  std::vector<int> sites;
+  sites.push_back(5);
+  for(int x = 0; x < sites.size(); x++){
+    std::cout << sites[x];
+  }
+  std::cout << std::endl;
+*/ 
+
+    std::cout << "BetList::LoadData" << std::endl;
     Bet bet1(5, btPass, 4);
+    std::cout << " bet1 amount " << bet1.GetAmount() << std::endl;
+    std::cout << " Address of bet1 " << &bet1 << std::endl;
     bets.push_back(bet1);
- //   retVal = Add(bet1);
- /*
-    Bet bet2(25, btOdds, 4);
-    retVal = Add(bet2);
-    Bet bet3(5, btCome, 6);
-    retVal = Add(bet3);
+    std::cout << " Address of bets[0] " << &bets[0] << std::endl;
+
+    std::cout << " First Bet Amount " << bets[0].GetAmount() << std::endl;
+//    Add(bet1);
+//    retVal = Add(bet1);
+
+ 
+//    Bet *bet1 = new Bet;
+//    bet1->SetBetStr(5, btPass, 4);
+//    bets.push_back(std::move(*bet1));
+ 
+/*
+    Bet bet2(10, btOdds, 4);
+    this->bets.push_back(std::move(bet2));
+    Bet bet3(15, btCome, 6);
+    this->bets.push_back(std::move(bet3));
     Bet bet4(25, btOdds, 6);
-    retVal = Add(bet4);
-    Bet bet5(5, btComeLine);
-    retVal = Add(bet5);
+    this->bets.push_back(std::move(bet4));
+    Bet bet5(55, btComeLine);
+    this->bets.push_back(std::move(bet5));
 */
     if (retVal != 0){
         std::cout << "Error in load data\n";

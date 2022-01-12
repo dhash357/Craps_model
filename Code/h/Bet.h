@@ -1,4 +1,3 @@
-//#pragma once
 #ifndef BET_H_
 #define BET_H_
 
@@ -19,6 +18,7 @@ struct sBet     // Structure of the bet including variables
 class Bet
 {
 	private:
+
 		// Variables
         sBet betstr;
 		
@@ -40,17 +40,22 @@ class Bet
         // Overload constructors
         Bet(int, int);          // params int amount, int betTypeId
 		Bet(int, int, int);     // params int amount, int betTypeId, int betNum
+        Bet(const Bet &);       // Copy Constructor
+        Bet& operator=(Bet& ) noexcept;    // Copy Assignment Operator
+        Bet(const Bet &&);                 // Move Constructor
+        Bet& operator=(Bet&& ) noexcept;   // Move Assignment Operator
 
         // Destructor
         ~Bet();
 
+    
         // Accessor Functions
         int GetAmount (void);               // Return the bet amount from betstr
         int GetBetTypeId (void);            // Return the bet BetTypeId from betstr
         int GetBetNum (void);               // Return the bet BetNum from betstr
 
         // Mutator Functions
-
+        int SetBetStr (int, int, int);      // Set the structure for the bet
 
         // Functions
 		int BetCheck (int);				// Check the Bet for winner, loser or reassign; pass in the roll

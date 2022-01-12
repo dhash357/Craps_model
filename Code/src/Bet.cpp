@@ -42,9 +42,13 @@ Bet::Bet() {
 	betstr.amount = 0;
 	betstr.betTypeId = 0;
     betstr.betNum = 0;      // There is no bet number for some bets
+
 }
 //	Bet;
 
+Bet::Bet(const Bet& other){
+
+}
 /**
 * Name: Bet
 *   
@@ -97,8 +101,10 @@ Bet::Bet(int amt, int bt, int bn) {
 	betstr.betTypeId = bt;
     betstr.betNum = bn;      
 
+    std::cout << "Bet::Bet " << betstr.amount << std::endl;
 
 };  //	Bet::Bet
+
 
 /**
 * Name: Bet
@@ -183,6 +189,33 @@ int Bet::GetBetNum (void){
     return betstr.betNum;
 }   // GetBetTypeId
 
+/**
+ * Name: SetBetStr
+ *
+ * Prototype: void SetBetStr (void)
+ * 
+ * Desc: This function loads the betStr with variables. Sets the amt (Bet Amount), 
+ *          bt (Bet Type) and, bn (Bet Number)
+ * 
+ * Param:   None
+ * 
+ * Create Date: 22/01/10
+ * Create By:   DJH
+ * 
+ * Modification:
+ * 22/01/10 DJH Created
+ * 
+ */ 
+
+int Bet::SetBetStr (int amt, int bt, int bn){
+    int retVal = retGood;
+
+	betstr.amount = amt;
+	betstr.betTypeId = bt;
+    betstr.betNum = bn;     
+
+    return retVal; 
+}
 /**
  * Name: CreateBetType
  *
