@@ -2,6 +2,7 @@
 #define PASS_H_
 
 #include "BetType.h"
+#include "Dice.h"
 
 class Pass : public BetType 
 {
@@ -14,15 +15,15 @@ class Pass : public BetType
         // Variables
 
         // Methods
-        virtual int Assign(int);
+        virtual int Assign(sRoll);
 
 
     public:
         // Variables
 
         // Methods
-        Pass(void){};                       // generic constructor for PassLine
-        Pass(int amount, int number);       // Constructor receiving amount and number in the constructor
+        Pass(void){};                       // generic constructor for Pass
+        Pass(int amount, int num);          // Constructor receiving amount and number of the bet assignment in the constructor
 
 };
 

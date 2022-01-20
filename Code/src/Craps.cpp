@@ -35,7 +35,30 @@ Craps::Craps(){
  * 
  */ 
 Craps::~Craps(){
-}   // CrapsRoll
+}   // ~Craps
+
+
+
+/**
+ * Name: GetRoll
+ *
+ * Prototype: sRoll GetRoll(void)
+ * 
+ * Desc: Return that structure that contains the results of the roll which is stored
+ *       in the object Dice.
+ * 
+ * Param:   void
+ * 
+ * Create Date: 22/01/18
+ * Create By:   DJH
+ * 
+ * Modification:
+ * 22/01/18 DJH     Created
+ * 
+ */ 
+sRoll Craps::GetRoll(){
+    return dice.GetRoll();
+}   // GetRoll
 
 /**
  * Name: Roll
@@ -55,19 +78,19 @@ Craps::~Craps(){
 int Craps::Roll(){
 
     int retVal;
-    sRoll roll;
+
 
     // Roll the dice
-    retVal = dice.Roll(roll);
+    retVal = dice.Roll();
 
     if (retVal == retBad){
         std::cout << "We need a message object to report errors" << std::endl;
     }
 
     // Lets write out the dice results
-    std::cout << "Die L = " << roll.valueL << std::endl;
-    std::cout << "Die R = " << roll.valueR << std::endl;
-    std::cout << "Total = " << roll.total << std::endl;
+    std::cout << "Die L = " << dice.GetRoll().valueL << std::endl;
+    std::cout << "Die R = " << dice.GetRoll().valueR << std::endl;
+    std::cout << "Total = " << dice.GetRoll().total << std::endl;
 
 
     return retVal;

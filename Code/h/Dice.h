@@ -18,10 +18,11 @@ struct sRoll     // Structure of the roll containing the total and result of eac
 class Dice
 {
 	private:
-		int sides;
-        int numDice;
+        int numDice;                // Number of dice total
+        int sides;                  // Number of sides on each die
 
         std::vector<Die> dice;
+        sRoll roll;                 // Current roll on the dice
 
 	public:
 
@@ -34,11 +35,12 @@ class Dice
         // Accessor Functions
         int GetSides (void);                // Return the number of sides on each die
         int GetNumDice (void);              // Return the number of dice
+        sRoll GetRoll (void);
 
         // Mutator Functions
 
         // Functions
-		int Roll(sRoll& roll);
+		int Roll(void);                     // Set the roll structure to the values for a new roll.
 
 };	//	Dice
 

@@ -1,6 +1,7 @@
 #include <iostream>
 #include "../h/Pass.h"
 #include "../h/Craps.h"
+#include "../h/Dice.h"
 
 
 /**
@@ -58,7 +59,7 @@ Pass::Pass(int amt, int num) {
  * 
  *
  */
-int Pass::Assign(int roll) {
+int Pass::Assign(sRoll roll) {
 
     int retVal;             // Return value of method
 

@@ -1,32 +1,34 @@
 #ifndef BETLIST_H_
 #define BETLIST_H_
 
-#include <deque>
+#include <vector>
 
 #include "Bet.h"
+#include "Dice.h"
 
 class BetList
 { 
 private:
-	std::deque<Bet>	bets;
+	std::vector<Bet>	bets;
 
 public:
     // Default Constructor
     BetList(void);
 
     // Default Destructor
-    ~BetList();
 
 	// Standard Functions
-    int CheckBet(void);
 	int Add(Bet);
-	int Remove(Bet);
-	std::deque<Bet>::iterator FindBet(sBet);
+    int CheckBet(sRoll);                         // Check all of the bets in the list based on the current settings of the dice (roll)
+//	int Remove(Bet);
+	std::vector<Bet>::iterator FindBet(sBet);
 
 
-    // Just for testing Loading fake data
-//    void LoadData(std::vector<Bet>& );
-    void LoadData();
+    void PrintBets(void);
+    void PrintBet(Bet);
+
+
+    void LoadData(void);
 };
 
 #endif /* BETLIST_H_ */

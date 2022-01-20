@@ -44,6 +44,8 @@ class Craps
 
         Dice dice = {2, 6};
 
+        
+
 	public:
         // Generic Constructor
         Craps(void);
@@ -51,9 +53,11 @@ class Craps
         // Generic Destructor
         ~Craps();
 
+        // Gettor Functions
+        sRoll GetRoll();
 
         // Functions
-        int Roll(void);
+        int Roll();
 
 
 };	//	Craps

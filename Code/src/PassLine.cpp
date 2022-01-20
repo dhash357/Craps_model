@@ -49,4 +49,89 @@ PassLine::PassLine(int amt) {
 
 }   // PassLine::PassLine
 
+/**
+ * Name: Winner
+ *
+ * Prototype: int Winner (sRoll)
+ * 
+ * Desc: This function will determine if the current roll is a winner for the current bet being checked from
+ *          the BetList
+ * 
+ * Param:   sRoll roll  Current roll of the dice being checked 
+ * 
+ * Create Date: 22/01/18
+ * Create By:   DJH
+ * 
+ * Modification:
+ * 220118 DJH Created
+ * 
+ */ 
+int PassLine::Winner(sRoll roll) 
+{
+    int chkRtn;
 
+std::cout << "PassLine::Winner Begin\n";
+    chkRtn = CheckVector(winner, roll);
+std::cout << "PassLine::Winner Return = " << chkRtn << "\n";  
+    
+    return chkRtn;
+    
+}   // PassLine::Winner
+
+/**
+ * Name: Loser
+ *
+ * Prototype: int Loser (sRoll)
+ * 
+ * Desc: This function will determine if the current roll is a Loser for the current bet being checked from
+ *          the BetList
+ * 
+ * Param:   sRoll roll  Current roll of the dice being checked 
+ * 
+ * Create Date: 22/01/18
+ * Create By:   DJH
+ * 
+ * Modification:
+ * 220118 DJH Created
+ * 
+ */ 
+int PassLine::Loser(sRoll roll) 
+{
+    int chkRtn;
+    int retVal = retGood;
+std::cout << "PassLine::Loser Begin\n";
+    chkRtn = CheckVector(loser, roll);
+std::cout << "PassLine::Loser Return = " << chkRtn << "\n";  
+    
+    return retVal;
+    
+}   // PassLine::Loser
+
+/**
+ * Name: Assign
+ *
+ * Prototype: int Assign (sRoll)
+ * 
+ * Desc: This function will determine if the current roll is a Assign for the current bet being checked from
+ *          the BetList
+ * 
+ * Param:   sRoll roll  Current roll of the dice being checked 
+ * 
+ * Create Date: 22/01/18
+ * Create By:   DJH
+ * 
+ * Modification:
+ * 220118 DJH Created
+ * 
+ */ 
+int PassLine::Assign(sRoll roll) 
+{
+    int chkRtn;
+    int retVal = retGood;
+std::cout << "PassLine::LoAssignser Begin\n";
+    chkRtn = CheckVector(assign, roll);
+std::cout << "PassLine::Assign Return = " << chkRtn << "\n";  
+    
+    return retVal;
+    
+}   // PassLine::Loser

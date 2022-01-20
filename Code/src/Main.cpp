@@ -6,17 +6,18 @@
 
 int main() {
     Craps craps;
+    sRoll roll;
 //	int value1;
 //	int value2;
 //	int total; 
 	int retVal = retGood;
 
+
 std::cout << "This is the first words out of the app!" << std::endl;
 
     BetList listOfBets;
 
-    // Create the dice. 2 dies with 6 sides
-	Dice dice(2, 6);
+
 
     // Place bets
 
@@ -24,7 +25,7 @@ std::cout << "This is the first words out of the app!" << std::endl;
     craps.Roll();
 
     // Check Bets for results; Win, Lose, Place new bet
-    listOfBets.CheckBet();
+    listOfBets.CheckBet(craps.GetRoll());
     
 /*	std::cout << "Value1 = " << value1 << std::endl;
 	std::cout << "Value2 = " << value2 << std::endl;

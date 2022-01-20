@@ -31,6 +31,31 @@ Die::Die(int s) {
 	}
 
 /**
+ * Name: GetSides
+ *
+ * Prototype: int GetSides(void)
+ * 
+ * Desc: This returns the number of sides for this die
+ * 
+ * Param:   void
+ * 
+ * Create Date: 22/01/18
+ * Create By:   DJH
+ * 
+ * Modification:
+ * 22/01/18 DJH     Created
+ * 
+ */ 
+int Die::GetSides()
+{
+	int ret;		// Value returned from the roll of the die
+
+	ret = rand() % this->sides + 1;	// Get a random number from 1 to # of sides of the die
+	
+	return (ret);
+}
+
+/**
  * Name: Roll
  *
  * Prototype: int Roll(void)
@@ -53,3 +78,4 @@ int Die::Roll()
 	
 	return (ret);
 }
+

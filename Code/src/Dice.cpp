@@ -41,12 +41,12 @@ Dice::Dice(){
 Dice::Dice(int num, int s){
 
     int i;
-    sides = s;
     numDice = num;
+    sides = s;
     
 
     for( i = 0; i < numDice; i++){
-        Die die(sides);
+        Die die(s);
         dice.push_back(die);
     }
 
@@ -69,7 +69,7 @@ Dice::Dice(int num, int s){
  *  21/12/29    DJH     Created
  * 
  */ 
-int Dice::GetSides(){
+int Dice::GetSides(void){
     return sides;
 }   // GetSides
 
@@ -89,9 +89,29 @@ int Dice::GetSides(){
  *  21/12/29    DJH     Created
  * 
  */ 
-int Dice::GetNumDice (){
+int Dice::GetNumDice (void){
     return numDice;
 }   // GetNumDice
+
+/**
+ * Name: GetRoll
+ *
+ * Prototype: int GetRoll (sRoll)
+ * 
+ * Desc: Access function to return the current roll on the dice
+ * 
+ * Param:   void
+ * 
+ * Create Date: 22/01/18
+ * Create By:   DJH
+ * 
+ * Modification:
+ *  22/01/18    DJH     Created
+ * 
+ */ 
+sRoll Dice::GetRoll (void){
+    return roll;
+}   // GetRoll
 
 /**
  * Name: Roll
@@ -111,7 +131,7 @@ int Dice::GetNumDice (){
  *  21/12/29    DJH     Created
  * 
  */ 
-int Dice::Roll(sRoll& roll){
+int Dice::Roll(void){
     int retVal = retGood;
 
     roll.valueL = dice[dieLeft].Roll();

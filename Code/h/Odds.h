@@ -2,6 +2,7 @@
 #define ODDS_H_
 
 #include "BetType.h"
+#include "Dice.h"
 
 class Odds : public BetType 
 {
@@ -22,7 +23,7 @@ class Odds : public BetType
 
         // Methods
         Odds(void){};                       // generic constructor for PassLine
-        Odds(int amount, int number);       // Constructor receiving amount and number in the constructor
+        Odds(int amount, int num);          // Constructor receiving amount and number in the constructor
 
 };
 

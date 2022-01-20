@@ -1,6 +1,7 @@
 #include <iostream>
 #include "../h/Odds.h"
 #include "../h/Craps.h"
+#include "../h/Dice.h"
 
 
 /**

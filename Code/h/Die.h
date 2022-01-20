@@ -15,6 +15,9 @@ class Die
 
 		int Roll(void);
 
+        // Gettor Functions
+        int GetSides();
+
 };	//	Die
 
 #endif /* DIE_H_ */

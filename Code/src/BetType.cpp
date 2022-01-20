@@ -3,6 +3,7 @@
 #include <algorithm>          // Needed for find
 #include "../h/BetType.h"
 #include "../h/Craps.h"
+#include "../h/Dice.h"
 
 /** Class BetType
   * 
@@ -42,7 +43,7 @@ BetType::BetType(void) {
 BetType::BetType(int amt){
 } // BetType(int)
 
-BetType::BetType(int amt, int num){
+BetType::BetType(int amt, sRoll roll){
 } // BetType(int, int)
 
 /**
@@ -60,33 +61,34 @@ BetType::BetType(int amt, int num){
  * Modification:
  * 211117 DJH Created
  * 
+ *  TODO 220120 DJH     Remove this function. It was moved to the Bet class. We are checking the Bet not the BetType
  */ 
-int BetType::Check(int roll){
-    int retVal = retNotFound;
+// int BetType::Check(sRoll roll){
+//     int retVal = retNotFound;
 
-    std::cout << "BetType::Check Begin " << std::endl;
+//     std::cout << "BetType::Check Begin \n";
 
-    retVal = Winner(roll);
+//     retVal = Winner(roll);
 
-    // If Winner was found return to calling program the return value for Winner
-    if (retVal == retFound){
-        retVal = retWinner;
-    }
+//     // If Winner was found return to calling program the return value for Winner
+//     if (retVal == retFound){
+//         retVal = retWinner;
+//     }
 
-    // If the retVal is still retNotFound then there was nothing found from the winner 
-    // method so we need to keep going. 
-    if (retVal == retNotFound){
-        retVal = Loser(roll);
+//     // If the retVal is still retNotFound then there was nothing found from the winner 
+//     // method so we need to keep going. 
+//     if (retVal == retNotFound){
+// //        retVal = Loser(roll);
 
-        // If Loser was found return to calling program the return value for loser
-        if (retVal == retFound){
-            retVal = 3;
-        }
+//         // If Loser was found return to calling program the return value for loser
+//         if (retVal == retFound){
+//             retVal = 3;
+//         }
 
-    } // if statement
+//     } // if statement
   
-    return retVal;
-} // Check
+//     return retVal;
+//} // Check
 
 /**
  * Name: CheckVector
@@ -105,8 +107,9 @@ int BetType::Check(int roll){
  * Modification:
  * 211117 DJH Created
  * 
+ * TODO: 22/01/18 DJH need to think about this for things like hardways where it depends on each die and not the total
  */ 
-int BetType::CheckVector(std::vector<int> vec, int value){
+int BetType::CheckVector(std::vector<int> vec, sRoll roll){
     int retVal;             // Return value of method
 std::cout << "BetType::CheckVector Begin" << std::endl;
     // Iterator used to store the position 
@@ -114,7 +117,7 @@ std::cout << "BetType::CheckVector Begin" << std::endl;
     std::vector<int>::iterator it;
 
     // Determine if the roll was in the vector of winning numbers
-    it = find(vec.begin(), vec.end(), value);
+    it = find(vec.begin(), vec.end(), roll.total);
     // if the position is not equal to the end then it was found and is a winner
     if (it != vec.end())
     {
@@ -145,35 +148,13 @@ std::cout << "BetType::CheckVector Begin" << std::endl;
  * 211117 DJH Created
  * 
  */ 
-int BetType::Winner(int roll) {
-
-    int retVal;             // Return value of method
-
-std::cout << "Pass::Winner Begin " << std::endl;
-
-    // Check to see if the roll is in the vector winner
-    retVal = CheckVector(winner, roll);
-
-std::cout << "Pass:Winner End Return " << retVal << std::endl;
-
-    // If the roll was found in the vector of winner This is a win
-    // Calculate the actual winnings. Assign the winnings to the retVal 
-    // to pass back to the Bet
-    if (retVal == retFound){
-
-std::cout << "Pass::Winner call CalculateWin " << std::endl;
-       
-        retVal = CalculateWin();
-std::cout << "Pass::Winner return CalculateWin " << retVal << std::endl;
-    }
-
-std::cout << "  Winnings = " << retVal << std::endl;
-
-    // Return the win amount if found
-    // Return constant retNotFound if the roll was not found in winner array
-    return retVal;
-
-} // Winner
+// Temp for testing of virtual function
+int BetType::Winner(sRoll roll)
+{
+    // TODO 220120 Create some message passing object that will report this. 
+    std::cout << "BetType::Winner \n";
+    return retBad;  // Return Bad this should never run so if it does it is a Bad return value
+}   //  Winner
 
 /**
  * Name: Loser
@@ -192,24 +173,11 @@ std::cout << "  Winnings = " << retVal << std::endl;
  * 211117 DJH Created
  * 
  */ 
-int BetType::Loser(int roll) {
-    int retVal;             // Return value from methods called; 
+int BetType::Loser(sRoll roll) {
 
-std::cout << "PassLine::Loser Begin " << std::endl;
-
-    // Check to see if the roll is in the vector winner
-    retVal = CheckVector(loser, roll);
-
-    if (retVal == retFound){
-      retVal = amount * -1;   // The losing amount is the amount of the bet
-    }
-
-std::cout << "  Losing amount = " << retVal << std::endl;
-
-    // Return the loss amount if found
-    // Return constant retNotFound if the roll was not found in loser array
-    return retVal;
-
+    // TODO 220120 Create some message passing object that will report this. 
+    std::cout << "BetType::Winner \n";
+    return retBad;  // Return Bad this should never run so if it does it is a Bad return value
 } // Loser
 
 /**
@@ -230,11 +198,12 @@ std::cout << "  Losing amount = " << retVal << std::endl;
  * 
  *
  */
-int BetType::Assign(int roll) {
+int BetType::Assign(sRoll roll) {
 
-  std::cout << "BetType::Assign Begin : This should never be called method is not devined in actual BetType" << std::endl;
+    // TODO 220120 Create some message passing object that will report this. 
+    std::cout << "BetType::Assign Begin : This should never be called method is not devined in actual BetType" << std::endl;
 
-  return retBad;
+    return retBad;
 } // Assign
 
 
@@ -254,16 +223,16 @@ int BetType::Assign(int roll) {
  * 211122 DJH Created
  * 
  */ 
-
-int BetType::CalculateWin(){
-    int retVal;   // Amount of the winnings
-
-    retVal = amount * oddsN / oddsD;
-
-std::cout << "BetType::CalculateWin : Winning amount = " << retVal << std::endl;
-
-    return retVal;
-} // CalculateWin
+//
+//int BetType::CalculateWin(){
+//    int retVal;   // Amount of the winnings
+//
+//    retVal = amount * oddsN / oddsD;
+//
+//std::cout << "BetType::CalculateWin : Winning amount = " << retVal << std::endl;
+//
+//    return retVal;
+//} // CalculateWin
 
 
 ////////////////////////////////////////////////////////////////////////////////////

@@ -1,16 +1,10 @@
 #include <iostream>
-#include <memory>
-#include <utility>
-
-#include <typeinfo>		// Remove only for testing
-#include <string>		// Remove only for testing
 
 #include "../h/Bet.h"
-#include "../h/Craps.h"
-#include "../h/BetType.h"
-#include "../h/PassLine.h"
 #include "../h/Pass.h"
+#include "../h/PassLine.h"
 #include "../h/Odds.h"
+#include "../h/Dice.h"
 
 // This is the code for the class bet
 
@@ -22,12 +16,11 @@
 /**
 * Name: Bet
 *   
-* Prototype: Bet(int, int)
+* Prototype: Bet(void)
 * 
 * Desc: Constructor for Bet class. This one is for bets which are not attached to a particular number
 * 
-* Param: int amt - Amount of the bet in dollars
-*        int bt - betTypeId is the type of bet. Defined in craps.h
+* Param: 
 *
 * Return:  
 * 
@@ -43,12 +36,8 @@ Bet::Bet() {
 	betstr.betTypeId = 0;
     betstr.betNum = 0;      // There is no bet number for some bets
 
-}
-//	Bet;
+}   //	Bet;
 
-Bet::Bet(const Bet& other){
-
-}
 /**
 * Name: Bet
 *   
@@ -72,7 +61,8 @@ Bet::Bet(int amt, int bt) {
 	betstr.amount = amt;
 	betstr.betTypeId = bt;
     betstr.betNum = 0;      // There is no bet number for some bets
-//	CreateBetType();
+
+	CreateBetType();
 
 };
 
@@ -103,31 +93,10 @@ Bet::Bet(int amt, int bt, int bn) {
 
     std::cout << "Bet::Bet " << betstr.amount << std::endl;
 
+    CreateBetType();
+
 };  //	Bet::Bet
 
-
-/**
-* Name: Bet
-*   
-* Prototype: ~Bet(int, int, int)
-* 
-* Desc: Constructor for Bet class. This one is for bets which are not attached to a particular number
-* 
-* Param: int amt - Amount of the bet in dollars
-*        int bt - betTypeId is the type of bet. Defined in craps.h
-*        int bn - betNum is the number that this bet is associated with
-*
-* Return:  
-* 
-* Create Date: 21/12/24
-* Create By: David Hash  
-* 
-* Modification:
-*   21/12/24   DJH    Created
-* 
-*/
-Bet::~Bet() {
-};  //	Bet::~Bet
 
 /**
  * Name: GetAmount
@@ -148,6 +117,73 @@ Bet::~Bet() {
 int Bet::GetAmount (void){
     return betstr.amount;
 }   // GetAmount
+
+/**
+ * Name: GetBetType
+ *
+ * Prototype: int GetGetBetType (void)
+ * 
+ * Desc: Returns the betType in a string stored in the betstr structure (Pass, Pass Line)
+ * 
+ * Param:   None
+ * 
+ * Create Date: 22/01/18
+ * Create By:   DJH
+ * 
+ * Modification:
+ * 22/01/18 DJH Created
+ * 
+ */ 
+std::string Bet::GetBetType (void){
+
+    std::string retVal;
+
+    switch (GetBetTypeId())
+    {
+
+    case btPassLine:
+        retVal = "Pass Line";
+        break;
+    
+    case btComeLine:
+        retVal = "Come Line";
+        break;
+    
+    case btPass:
+        retVal = "Pass";
+        break;
+    
+    case btCome:
+        retVal = "Come";
+        break;
+    
+    case btOdds:
+        retVal = "Odds";
+        break;
+    
+    case btField:
+        retVal = "Field";
+        break;
+    
+    case btOneTime:
+        retVal = "One Time";
+        break;
+    
+    case btHardways:
+        retVal = "Hardway";
+        break;
+    
+    case btPlace:
+        retVal = "Place";
+        break;
+    
+    default:
+        retVal = "Unknown Bet Type";
+        break;
+    }
+    
+    return retVal;
+}   // GetBetTypeId
 
 /**
  * Name: GetBetTypeId
@@ -189,23 +225,6 @@ int Bet::GetBetNum (void){
     return betstr.betNum;
 }   // GetBetTypeId
 
-/**
- * Name: SetBetStr
- *
- * Prototype: void SetBetStr (void)
- * 
- * Desc: This function loads the betStr with variables. Sets the amt (Bet Amount), 
- *          bt (Bet Type) and, bn (Bet Number)
- * 
- * Param:   None
- * 
- * Create Date: 22/01/10
- * Create By:   DJH
- * 
- * Modification:
- * 22/01/10 DJH Created
- * 
- */ 
 
 int Bet::SetBetStr (int amt, int bt, int bn){
     int retVal = retGood;
@@ -216,6 +235,7 @@ int Bet::SetBetStr (int amt, int bt, int bn){
 
     return retVal; 
 }
+
 /**
  * Name: CreateBetType
  *
@@ -235,12 +255,14 @@ int Bet::SetBetStr (int amt, int bt, int bn){
 
 int Bet::CreateBetType(void){
 	int ret = retGood;
-	
+
+std::cout << " Bet::CreateBetType Begin " << "\n";
+
 	switch (betstr.betTypeId){
 		case btPassLine:
 		{
-			betType = std::make_unique<PassLine>(betstr.amount);
-std::cout << " Bet::CreateBetType Begin btPassLine" << std::endl;
+			betType = std::make_shared<PassLine>(betstr.amount);
+std::cout << " Bet::CreateBetType Begin btPassLine = " << &betType << "\n";
 
 
 //			if (!betType) {
@@ -253,8 +275,8 @@ std::cout << " Bet::CreateBetType Begin btPassLine" << std::endl;
 		case btComeLine:
 			break;
 		case btPass:
-			betType = std::make_unique<Pass>(betstr.amount, betstr.betNum);
-std::cout << " Bet::CreateBetType Begin btPass" << std::endl;
+			betType = std::make_shared<Pass>(betstr.amount, betstr.betNum);
+std::cout << " Bet::CreateBetType Begin btPass" << "\n";
 
 
 //			if (!betType) {
@@ -268,8 +290,8 @@ std::cout << " Bet::CreateBetType Begin btPass" << std::endl;
 			break;
 
 		case btOdds:
-			betType = std::make_unique<Odds>(betstr.amount, betstr.betNum);
-std::cout << " Bet::CreateBetType Begin btOdds" << std::endl;
+			betType = std::make_shared<Odds>(betstr.amount, betstr.betNum);
+std::cout << " Bet::CreateBetType Begin btOdds" << "\n";
 
 
 //			if (!betType) {
@@ -297,6 +319,7 @@ std::cout << " Bet::CreateBetType Begin btOdds" << std::endl;
 	return ret;
 }	// CreateBetType
 
+
 /**
  * Name: BetCheck
  *
@@ -313,12 +336,15 @@ std::cout << " Bet::CreateBetType Begin btOdds" << std::endl;
  * Modification:
  * 
  */ 
-int Bet::BetCheck(int roll){
+int Bet::BetCheck(sRoll roll){
 	int checkRet;
 
 	std::cout << "Bet::BetCheck Begin " << std::endl;
 
-	checkRet = betType->Check(roll);
+// 220119 I was checking the bet in the BetType. I am going to try to put that code in Bet and call virtual Winner from Bet
+//	checkRet = betType->Check(roll);
+
+    checkRet = Check(betType, roll);
 
 	if (checkRet > 0){
 		win = checkRet;			// assign the winning amount from checking roll to the win variable
@@ -340,3 +366,49 @@ int Bet::BetCheck(int roll){
 
 	return (checkRet);
 }	// BetCheck
+
+/**
+ * Name: Check
+ *
+ * Prototype: int Check (std::shared_ptr<BetType>, sRoll)
+ * 
+ * Desc: Check to see if this BetType with this roll is a Loser, Winner or needs to be Assigned to another BetType
+ * 
+ * Param:   std::shared_ptr<BetType> ptr    Pointer to the actual type of bet. Each bet inherited from BetType will have its own Check  
+ *          sRoll   roll	                Roll of the dice
+ * 
+ * Create Date: 22/01/17
+ * Create By:   DJH
+ * 
+ * Modification:
+ * 220117 DJH Created
+ * 
+ */ 
+int Bet::Check(std::shared_ptr<BetType> ptr, sRoll roll)
+{
+    int retVal = retNotFound;
+
+    std::cout << "Bet::Check Begin \n";
+
+    retVal = ptr->Winner(roll);
+
+    // If Winner was found return to calling program the return value for Winner
+    if (retVal == retFound){
+        retVal = retWinner;
+    }
+
+    // If the retVal is still retNotFound then there was nothing found from the winner 
+    // method so we need to keep going. 
+    if (retVal == retNotFound){
+        retVal = ptr->Loser(roll);
+
+        // If Loser was found return to calling program the return value for loser
+        if (retVal == retFound){
+            retVal = 3;
+        }
+
+    } // if statement
+  
+    return retVal;
+
+}

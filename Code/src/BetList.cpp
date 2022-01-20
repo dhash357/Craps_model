@@ -1,10 +1,9 @@
-#include <deque>
-#include <algorithm>          // Needed for find
-#include <stdio.h>
+#include <vector>
 #include <iostream>
+#include <algorithm>          // Needed for find
+
 #include "../h/BetList.h"
-#include "../h/Bet.h"
-#include "../h/Craps.h"
+#include "../h/Dice.h"
 
 
 /**
@@ -17,7 +16,7 @@
  *			player
  * 
  * Param: void
- *
+ * 
  * Return: void
  * 
  * Create Date:	21/12/08
@@ -33,32 +32,37 @@ BetList::BetList() {
     std::cout << "BetList::BetList() " << std::endl;
 
     // Just for testing load fake data into the vector
-//    void LoadData(std::vector<Bet>& bets);
     LoadData();
 
 }
 
 /**
- * Name: ~BetList
+ * Name: Add
  *
- * Prototype: ~BetList(void);
+ * Prototype: Add(Bet);
  * 
- * Desc: Generic Destructor of the BetList class
+ * Desc: Add is used to add a bet to the current list of bets
  * 
- * Param: void
- *
- * Return: void
+ * Param: Bet bet   bet to be added to the vector of bets which makes up betList
  * 
- * Create Date:	21/12/29
+ * Return: int  retGood or retBad
+ * 
+ * Create Date:	21/12/08
  * Create By: David Hash
  * 
  * Modification:
- *	21/12/29	DJH		Created
+ *	21/12/08	DJH		Created
  * 
  */ 
-//inline BetList::BetList(){
-BetList::~BetList() {
-}   // ~BetList
+int BetList::Add(Bet bet) 
+{
+	int retVal = retGood;	// Assume return good value
+std::cout << " BetList::Add Begin " << "\n";
+
+	bets.push_back(bet);
+
+	return (retVal);
+}	// BetList::Add
 
 /**
 * Name:	CheckBet
@@ -79,64 +83,36 @@ BetList::~BetList() {
 *	21/12/08	DJH		Created
 * 
 */
-int BetList::CheckBet()
+int BetList::CheckBet(sRoll roll)
 {
 	int retVal = retGood;	// Assume return good value
-//    std::vector<Bet>::size_type i;
 
 std::cout << "BetList::CheckBet()\n";
 
-//std::cout << "BetList Size " << bets.size() << std::endl;
+    PrintBets();
 
-/*
-    for (i = 0; i < bets.size(); i++){
-        std::cout << " Bet " << i << std::endl;
-        std::cout << "     Amount " << bets[i].GetAmount() << std::endl;
-        std::cout << "     Type " << bets[i].GetBetTypeId() << std::endl;
-        std::cout << "     Number " << bets[i].GetBetNum() << std::endl;
+    int size;       // Size of the vector of bets
+    int i;          // Index value
+
+    size = bets.size();
+
+    for (i = 0; i < size; i++)
+    {
+        bets[i].BetCheck(roll);
     }
-*/
+
 
 	return (retVal);
-}	//	BetList::ChekcBet
-
-/**
-* Name:	Add 
-*
-* Prototype: int Add(Bet) 
-* 
-* Desc: Add a Bet to the vector. This is actually the process of placing or
-*		reassigning a Bet on the table 
-* 
-* Param: Bet - The bet to be added
-*
-* Return: Generic return value. Did the method process without error or did it have an error
-* 
-* Create Date: 21/12/08
-* Create By: David Hash
-* 
-* Modification:
-*	21/12/08	DJH		Created
-*
-* 
-*/
-int BetList::Add(Bet bet) 
-{
-	int retVal = retGood;	// Assume return good value
-
-	this->bets.push_back(bet);
-
-	return (retVal);
-}	// BetList::Add
+}	//	BetList::CheckBet
 
 /**
 * Name:	FindBet 
 *
-* Prototype: int FindBet(bet)
+* Prototype: int FindBet(betCrit)
 * 
 * Desc: find a specific bet in the vector of bets
 * 
-* Param: bet - Vector of bets currently on the table
+* Param: betCrit - This is the bet that is being searched to find
 *
 * Return: iterator it if found: null if not found
 * 
@@ -147,13 +123,12 @@ int BetList::Add(Bet bet)
 *   21/12/08   DJH    Created
 * 
 */
-
-std::deque<Bet>::iterator BetList::FindBet(sBet betCrit)
+std::vector<Bet>::iterator BetList::FindBet(sBet betCrit)
 {
-	std::deque<Bet>::iterator begin;
-	std::deque<Bet>::iterator end;
+	std::vector<Bet>::iterator begin;
+	std::vector<Bet>::iterator end;
 	
-	std::deque<Bet>::iterator it;
+	std::vector<Bet>::iterator it;
 
 //https://stackoverflow.com/questions/16798535/finding-an-element-in-a-vector-of-structures
 //https://thispointer.com/using-stdfind-stdfind_if-with-user-defined-classes/
@@ -166,22 +141,9 @@ std::deque<Bet>::iterator BetList::FindBet(sBet betCrit)
 // find_if uses a Lambda function to do the find. 
 //          betCrit is passed in by capture
 //          bets is passed in by reference
-/*
     it = std::find_if(begin, 
              end, 
-             [betCrit]
-             (const Bet& bets) -> bool { 
-				 if ((bets.GetAmount() == betCrit.amount) &&
-				     (bets.GetBetTypeId() == betCrit.betTypeId) &&
-					 (bets.GetBetNum() == betCrit.betNum))
-					 {return true;}
-				 else
-				 	{return false;}						// Amount of money for this bet
-             }); 
-*/
-    it = std::find_if(begin, 
-             end, 
-             [betCrit]
+            [betCrit]
              (Bet& b) -> bool { 
 				 if ((b.GetAmount() == betCrit.amount) &&
 				     (b.GetBetTypeId() == betCrit.betTypeId) &&
@@ -189,12 +151,31 @@ std::deque<Bet>::iterator BetList::FindBet(sBet betCrit)
 					 {return true;}
 				 else
 				 	{return false;}						// Amount of money for this bet
-             }); 
+           }); 
 
     return it;
 }   // FindBet
 
 
+
+void BetList::PrintBets(void)
+   {
+        int i;
+        int size;
+
+        size = bets.size();
+
+        for (i = 0; i < size; i++)
+        {
+            PrintBet(bets[i]);
+        }
+    }
+
+void BetList::PrintBet(Bet b)
+    {
+        std::cout << "Bet Type = " << b.GetBetType() << " ";
+        std::cout << "bet amount = " << b.GetAmount() << "\n";
+    }
 
 
 // Junk function for testing
@@ -214,21 +195,10 @@ void BetList::LoadData()
 */ 
 
     std::cout << "BetList::LoadData" << std::endl;
-    Bet bet1(5, btPass, 4);
-    std::cout << " bet1 amount " << bet1.GetAmount() << std::endl;
-    std::cout << " Address of bet1 " << &bet1 << std::endl;
-    bets.push_back(bet1);
-    std::cout << " Address of bets[0] " << &bets[0] << std::endl;
+    Bet bet(5, btPassLine);
 
-    std::cout << " First Bet Amount " << bets[0].GetAmount() << std::endl;
-//    Add(bet1);
-//    retVal = Add(bet1);
+    Add(bet);
 
- 
-//    Bet *bet1 = new Bet;
-//    bet1->SetBetStr(5, btPass, 4);
-//    bets.push_back(std::move(*bet1));
- 
 /*
     Bet bet2(10, btOdds, 4);
     this->bets.push_back(std::move(bet2));
@@ -239,6 +209,9 @@ void BetList::LoadData()
     Bet bet5(55, btComeLine);
     this->bets.push_back(std::move(bet5));
 */
+
+    PrintBets();
+
     if (retVal != 0){
         std::cout << "Error in load data\n";
     }
