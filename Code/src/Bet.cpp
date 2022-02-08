@@ -387,28 +387,39 @@ int Bet::BetCheck(sRoll roll){
 int Bet::Check(std::shared_ptr<BetType> ptr, sRoll roll)
 {
     int retVal = retNotFound;
+    int winAmt = 0.0;
 
     std::cout << "Bet::Check Begin \n";
 
-    retVal = ptr->Winner(roll);
+    std::tie(retVal, winAmt) = ptr->Winner(roll);
 
     // If Winner was found return to calling program the return value for Winner
-    if (retVal == retFound){
+    if (retVal == retFound)
+    {
+// STOPPED HERE  220120 Need to deal with returning the winning amount and pass it back to calling routine BetCheck        
         retVal = retWinner;
     }
 
     // If the retVal is still retNotFound then there was nothing found from the winner 
     // method so we need to keep going. 
-    if (retVal == retNotFound){
+    if (retVal == retNotFound)
+    {
         retVal = ptr->Loser(roll);
 
         // If Loser was found return to calling program the return value for loser
-        if (retVal == retFound){
-            retVal = 3;
+        if (retVal == retFound)
+        {
+            retVal = retLoser;
         }
 
     } // if statement
   
+    if (retVal == retNotFound)
+    {
+        retVal = ptr->Assign(roll);
+
+    }
+
     return retVal;
 
-}
+}   // Check

@@ -1,4 +1,6 @@
 #include <iostream>
+#include <tuple>
+
 #include "../h/PassLine.h"
 #include "../h/Craps.h"
 
@@ -66,15 +68,25 @@ PassLine::PassLine(int amt) {
  * 220118 DJH Created
  * 
  */ 
-int PassLine::Winner(sRoll roll) 
+std::tuple <int, float> PassLine::Winner(sRoll roll) 
 {
     int chkRtn;
+    float winAmt = 0.0;       // Amount of winnings if there are winnings
 
 std::cout << "PassLine::Winner Begin\n";
     chkRtn = CheckVector(winner, roll);
 std::cout << "PassLine::Winner Return = " << chkRtn << "\n";  
+
+    if (chkRtn == retFound)
+    {
+//        winAmt = amount * (oddsN / oddsD);
+//std::cout << "winAmt = " << winAmt << "\n";
+//std::cout << "amount = " << amount << "\n";
+//std::cout << "oddsN = " << oddsN << "\n";
+//std::cout << "oddsD = " << oddsD << "\n";
+    }
     
-    return chkRtn;
+    return std::make_tuple(chkRtn, winAmt);
     
 }   // PassLine::Winner
 
@@ -128,7 +140,7 @@ int PassLine::Assign(sRoll roll)
 {
     int chkRtn;
     int retVal = retGood;
-std::cout << "PassLine::LoAssignser Begin\n";
+std::cout << "PassLine::Assign Begin\n";
     chkRtn = CheckVector(assign, roll);
 std::cout << "PassLine::Assign Return = " << chkRtn << "\n";  
     

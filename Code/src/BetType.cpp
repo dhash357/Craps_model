@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>          // Needed for find
+#include <tuple>
 #include "../h/BetType.h"
 #include "../h/Craps.h"
 #include "../h/Dice.h"
@@ -45,50 +46,6 @@ BetType::BetType(int amt){
 
 BetType::BetType(int amt, sRoll roll){
 } // BetType(int, int)
-
-/**
- * Name: Check
- *
- * Prototype: int Check (int roll)
- * 
- * Desc: Check to see if this BetType with this roll is a Loser, Winner or needs to be Assigned to another BetType
- * 
- * Param:   int roll	Roll of the dice
- * 
- * Create Date: 21/11/17
- * Create By:   DJH
- * 
- * Modification:
- * 211117 DJH Created
- * 
- *  TODO 220120 DJH     Remove this function. It was moved to the Bet class. We are checking the Bet not the BetType
- */ 
-// int BetType::Check(sRoll roll){
-//     int retVal = retNotFound;
-
-//     std::cout << "BetType::Check Begin \n";
-
-//     retVal = Winner(roll);
-
-//     // If Winner was found return to calling program the return value for Winner
-//     if (retVal == retFound){
-//         retVal = retWinner;
-//     }
-
-//     // If the retVal is still retNotFound then there was nothing found from the winner 
-//     // method so we need to keep going. 
-//     if (retVal == retNotFound){
-// //        retVal = Loser(roll);
-
-//         // If Loser was found return to calling program the return value for loser
-//         if (retVal == retFound){
-//             retVal = 3;
-//         }
-
-//     } // if statement
-  
-//     return retVal;
-//} // Check
 
 /**
  * Name: CheckVector
@@ -149,11 +106,11 @@ std::cout << "BetType::CheckVector Begin" << std::endl;
  * 
  */ 
 // Temp for testing of virtual function
-int BetType::Winner(sRoll roll)
+std::tuple <int, float> BetType::Winner(sRoll roll)
 {
     // TODO 220120 Create some message passing object that will report this. 
     std::cout << "BetType::Winner \n";
-    return retBad;  // Return Bad this should never run so if it does it is a Bad return value
+    return std::make_tuple(retBad, 0.0);  // Return Bad this should never run so if it does it is a Bad return value
 }   //  Winner
 
 /**

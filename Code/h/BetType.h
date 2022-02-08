@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <memory>
+#include <tuple>
 
 #include "Craps.h"
 #include "Dice.h"
@@ -44,7 +45,7 @@ class BetType
 
 		int Check(sRoll);
 
-        virtual int Winner(sRoll);
+        virtual std::tuple <int, float> Winner(sRoll);
         virtual int Loser(sRoll);
         virtual int Assign(sRoll);
 
