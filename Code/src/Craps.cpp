@@ -1,47 +1,99 @@
+#include "../h/Craps.h"
 #include <iostream>
-#include "../h/Dice.h"
-#include "../h/Bet.h"
-#include "../h/PassLine.h"
+
+/**
+ * Name: Craps
+ *
+ * Prototype: void Craps(void)
+ * 
+ * Desc: Generic constructor 
+ * 
+ * Param:   void
+ * 
+ * Create Date: 21/12/22
+ * Create By:   DJH
+ * 
+ * Modification:
+ * 
+ */ 
+Craps::Craps(){
+}   // CrapsRoll
+
+/**
+ * Name: ~Craps
+ *
+ * Prototype: void ~Craps(void)
+ * 
+ * Desc: Generic destructor 
+ * 
+ * Param:   void
+ * 
+ * Create Date: 21/12/22
+ * Create By:   DJH
+ * 
+ * Modification:
+ * 
+ */ 
+Craps::~Craps(){
+}   // ~Craps
 
 
-int main() {
-	int value1;
-	int value2;
-	int total; 
-	int retVal;
 
-	Bet bet(5, btPassLine);
+/**
+ * Name: GetRoll
+ *
+ * Prototype: sRoll GetRoll(void)
+ * 
+ * Desc: Return that structure that contains the results of the roll which is stored
+ *       in the object Dice.
+ * 
+ * Param:   void
+ * 
+ * Create Date: 22/01/18
+ * Create By:   DJH
+ * 
+ * Modification:
+ * 22/01/18 DJH     Created
+ * 
+ */ 
+sRoll Craps::GetRoll(){
+    return dice.GetRoll();
+}   // GetRoll
 
-	Dice die(6);
+/**
+ * Name: Roll
+ *
+ * Prototype: int CrapsRoll(void)
+ * 
+ * Desc: This simulates the roll of 2 dies each has 6 sides
+ * 
+ * Param:   void
+ * 
+ * Create Date: 21/12/22
+ * Create By:   DJH
+ * 
+ * Modification:
+ * 
+ */ 
+int Craps::Roll(){
 
-	value1 = die.Roll();
-	value2 = die.Roll();
+    int retVal;
 
-	total = value1 + value2;
 
-	std::cout << "Value1 = " << value1 << std::endl;
-	std::cout << "Value2 = " << value2 << std::endl;
-	std::cout << "Total = " << total << std::endl;
+    // Roll the dice
+    retVal = dice.Roll();
 
-	retVal = bet.BetCheck(total);
+    if (retVal == retBad){
+        std::cout << "We need a message object to report errors" << std::endl;
+    }
 
-	switch (retVal)
-	{
-		case retWinner:
-			std::cout << total << " is a winner." << std::endl;
-			break;
-	
-		case retLoser:
-			std::cout << total << " is a loser." << std::endl;
-			break;
-		
-		case retAssign:
-			std::cout << total << " is reAssigned." << std::endl;
-			break;
-		
-		default:
-			break;
-	}
+    // Lets write out the dice results
+    std::cout << "Die L = " << dice.GetRoll().valueL << std::endl;
+    std::cout << "Die R = " << dice.GetRoll().valueR << std::endl;
+    std::cout << "Total = " << dice.GetRoll().total << std::endl;
 
-	return (0);
-};	// main
+
+    return retVal;
+
+}   // CrapsRoll
+

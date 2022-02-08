@@ -1,8 +1,10 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>          // Needed for find
+#include <tuple>
 #include "../h/BetType.h"
 #include "../h/Craps.h"
+#include "../h/Dice.h"
 
 /** Class BetType
   * 
@@ -42,48 +44,8 @@ BetType::BetType(void) {
 BetType::BetType(int amt){
 } // BetType(int)
 
-/**
- * Name: Check
- *
- * Prototype: int Check (int roll)
- * 
- * Desc: Check to see if this BetType with this roll is a Loser, Winner or needs to be Assigned to another BetType
- * 
- * Param:   int roll	Roll of the dice
- * 
- * Create Date: 21/11/17
- * Create By:   DJH
- * 
- * Modification:
- * 211117 DJH Created
- * 
- */ 
-int BetType::Check(int roll){
-  int retVal = retNotFound;
-
-	std::cout << "BetType::Check Begin " << std::endl;
-
-  retVal = Winner(roll);
-
-  // If Winner was found return to calling program the return value for Winner
-  if (retVal == retFound){
-    retVal = retWinner;
-  }
-
-  // If the retVal is still retNotFound then there was nothing found from the winner 
-  // method so we need to keep going. 
-  if (retVal == retNotFound){
-    retVal = Loser(roll);
-
-    // If Loser was found return to calling program the return value for loser
-    if (retVal == retFound){
-      retVal = 3;
-    }
-
-  } // if statement
-  
-  return retVal;
-} // Check
+BetType::BetType(int amt, sRoll roll){
+} // BetType(int, int)
 
 /**
  * Name: CheckVector
@@ -102,8 +64,9 @@ int BetType::Check(int roll){
  * Modification:
  * 211117 DJH Created
  * 
+ * TODO: 22/01/18 DJH need to think about this for things like hardways where it depends on each die and not the total
  */ 
-int BetType::CheckVector(std::vector<int> vec, int value){
+int BetType::CheckVector(std::vector<int> vec, sRoll roll){
     int retVal;             // Return value of method
 std::cout << "BetType::CheckVector Begin" << std::endl;
     // Iterator used to store the position 
@@ -111,7 +74,7 @@ std::cout << "BetType::CheckVector Begin" << std::endl;
     std::vector<int>::iterator it;
 
     // Determine if the roll was in the vector of winning numbers
-    it = find (vec.begin(), vec.end(), value);
+    it = find(vec.begin(), vec.end(), roll.total);
     // if the position is not equal to the end then it was found and is a winner
     if (it != vec.end())
     {
@@ -119,7 +82,7 @@ std::cout << "BetType::CheckVector Begin" << std::endl;
         retVal = retFound;
     } else {
         retVal = retNotFound;
-	}
+    }
 
     return retVal;
 
@@ -142,12 +105,13 @@ std::cout << "BetType::CheckVector Begin" << std::endl;
  * 211117 DJH Created
  * 
  */ 
-int BetType::Winner(int roll) {
-
-	std::cout << "BetType::Winner Begin : This should never be called method is not devined in actual BetType " << std::endl;
-
-  return retBad;
-} // Winner
+// Temp for testing of virtual function
+std::tuple <int, float> BetType::Winner(sRoll roll)
+{
+    // TODO 220120 Create some message passing object that will report this. 
+    std::cout << "BetType::Winner \n";
+    return std::make_tuple(retBad, 0.0);  // Return Bad this should never run so if it does it is a Bad return value
+}   //  Winner
 
 /**
  * Name: Loser
@@ -166,11 +130,11 @@ int BetType::Winner(int roll) {
  * 211117 DJH Created
  * 
  */ 
-int BetType::Loser(int roll) {
+int BetType::Loser(sRoll roll) {
 
-	std::cout << "BetType::Loser Begin : This should never be called method is not devined in actual BetType" << std::endl;
-
-  return retBad;
+    // TODO 220120 Create some message passing object that will report this. 
+    std::cout << "BetType::Winner \n";
+    return retBad;  // Return Bad this should never run so if it does it is a Bad return value
 } // Loser
 
 /**
@@ -190,13 +154,15 @@ int BetType::Loser(int roll) {
  * 211117 DJH Created
  * 
  *
-int BetType::Assign(int roll) {
+ */
+int BetType::Assign(sRoll roll) {
 
-	std::cout << "BetType::Assign Begin : This should never be called method is not devined in actual BetType" << std::endl;
+    // TODO 220120 Create some message passing object that will report this. 
+    std::cout << "BetType::Assign Begin : This should never be called method is not devined in actual BetType" << std::endl;
 
-  return retBad;
+    return retBad;
 } // Assign
-*/
+
 
 /**
  * Name: CalculateWiin
@@ -214,16 +180,21 @@ int BetType::Assign(int roll) {
  * 211122 DJH Created
  * 
  */ 
+//
+//int BetType::CalculateWin(){
+//    int retVal;   // Amount of the winnings
+//
+//    retVal = amount * oddsN / oddsD;
+//
+//std::cout << "BetType::CalculateWin : Winning amount = " << retVal << std::endl;
+//
+//    return retVal;
+//} // CalculateWin
 
-int BetType::CalculateWin(){
-  int retVal;   // Amount of the winnings
 
-  retVal = amount * oddsN / oddsD;
-
- 	std::cout << "BetType::CalculateWin : Winning amount = " << retVal << std::endl;
-
-  return retVal;
-} // CalculateWin
+////////////////////////////////////////////////////////////////////////////////////
+// Debug scripts
+////////////////////////////////////////////////////////////////////////////////////
 
 void BetType::PrintVector(std::vector<int> vec){
 

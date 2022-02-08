@@ -1,35 +1,79 @@
+#include <iostream>
 #include "../h/Pass.h"
+#include "../h/Craps.h"
+#include "../h/Dice.h"
 
 
+/**
+ * Name: Pass
+ *
+ * Prototype: int Pass (void)
+ * 
+ * Desc: Constructor for the BetType Pass
+ * 
+ * Param:   None
+ * 
+ * Create Date: 21/11/22
+ * Create By:   DJH
+ * 
+ * Modification:
+ * 211122 DJH Created
+ * 
+ */ 
+
+Pass::Pass(int amt, int num) {
+
+    // There are only 6 numbers for 'num'. They are {4 5 6 8 9 10}
+
+    // Set Winning numbers into a vector
+    winner.push_back(num);
+
+    // Set Losing numbers into a vector
+    loser.push_back(7);
+
+    // Set Values for calculating odds
+    // This is the pass line bet so the odds are 1:1
+    oddsN = 1;
+    oddsD = 1;
+
+    amount = amt;
 
 
+}   // Pass::Pass
 
-// PassLine
-// Description	Pass is a child of BetType. This is the initial bet when 
-//              a bet is placed on the Pass Line
+/**
+ * Name: Assign
+ *
+ * Prototype: int Assign (int roll)
+ * 
+ * Desc: This is a place holder only. The child will contain the real code
+ *       to determine if the bet needs to be Assign
+ * 
+ * Param:   int roll	Roll of the dice
+ * 
+ * Create Date: 21/11/17
+ * Create By:   DJH
+ * 
+ * Modification:
+ * 211117 DJH Created
+ * 
+ *
+ */
+int Pass::Assign(sRoll roll) {
 
-//Pass::Pass(int test) : BetType 
+    int retVal;             // Return value of method
 
-//{
-/*
-    winner.push_back(7);
-    winner.push_back(11);
+std::cout << "Pass::Assign Begin : Assign current bet to another BetType" << std::endl;
 
-    loser.push_back(2);
-    loser.push_back(3);
-    loser.push_back(12);
+      // Check to see if the roll is in the vector winner
+    retVal = CheckVector(loser, roll);
 
-    change.push_back(4);
-    change.push_back(5);
-    change.push_back(6);
-    change.push_back(8);
-    change.push_back(9);
-    change.push_back(10);
-*/
-//}   // Pass::Pass
+    if (retVal == retFound){
+        
+
+    }
 
 
-
-
-//BetType[CONST::PassAssigned][4]
+  return retVal;
+} // Assign
 

@@ -12,9 +12,9 @@ APP=$(BIN)/Main
 # Figure this out later to get a list of obj files based on the cpp files
 #SRCS = $(wildcard $(SRC)/*.cpp)
 #OBJS = $(patsubst $(SRC)/*.cpp , $(OBJ)/*.o , $(wildcard $(SRC)/*.cpp ))
-SRCS = $(SRC)/Main.cpp $(SRC)/Bet.cpp $(SRC)/BetList.cpp $(SRC)/BetType.cpp $(SRC)/Craps.cpp $(SRC)/Dice.cpp $(SRC)/Die.cpp $(SRC)/Button.cpp $(SRC)/Pass.cpp $(SRC)/PassLine.cpp $(SRC)/Odds.cpp
-OBJS = $(OBJ)/Main.o $(OBJ)/Bet.o $(OBJ)/BetList.o $(OBJ)/BetType.o $(OBJ)/Craps.o $(OBJ)/Dice.o $(OBJ)/Die.o $(OBJ)/Button.o $(OBJ)/Pass.o $(OBJ)/PassLine.o $(OBJ)/Odds.o
-HS = $(H)/Main.h $(H)/Bet.h $(H)/BetList.h $(H)/BetType.h $(H)/Craps.h $(H)/Dice.h $(H)/Die.h $(H)/Button.h $(H)/Pass.h $(H)/PassLine.h $(H)/Odds.h
+SRCS = $(SRC)/Main.cpp 
+OBJS = $(OBJ)/Main.o 
+HS = $(H)/Main.h 
 #OBJS = Bet.o BetList.o BetType.o Craps.o Dice.o
 
 $(SRC)/%.o: $(SRC)/%.c $(H)/%.h

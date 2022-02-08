@@ -1,30 +1,36 @@
 #ifndef PASSLINE_H_
 #define PASSLINE_H_
 
-#include "BetType.h"
+#include <tuple>
 
-class PassLine : public BetType 
+#include "BetType.h"
+#include "Dice.h"
+
+class PassLine : public BetType  
 {
     private:
         // Variables
 
-        // Methods
+        // Functions
 
     protected:
         // Variables
 
-        // Methods
-        virtual int Winner(int roll);
-        virtual int Loser(int roll);
+        // Funtions
 //        virtual int Assign(int);
-
 
     public:
         // Variables
 
-        // Methods
+        // Constructors
         PassLine(void){};           // generic constructor for PassLine
         PassLine(int amount);       // Constructor pass in the amount of the bet when constructed
+
+        // Functions
+        std::tuple <int, float> Winner(sRoll);          // Determine if the current roll for this bet is a Winner
+        int Loser(sRoll);           // Determine if the current roll for this bet is a Loser
+        int Assign(sRoll);          // Determine if the current roll for this bet needs to be reAssigned
+
         
 };
 

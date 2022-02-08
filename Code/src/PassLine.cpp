@@ -1,4 +1,6 @@
 #include <iostream>
+#include <tuple>
+
 #include "../h/PassLine.h"
 #include "../h/Craps.h"
 
@@ -49,79 +51,99 @@ PassLine::PassLine(int amt) {
 
 }   // PassLine::PassLine
 
-
 /**
  * Name: Winner
  *
- * Prototype: virtual int Winner (int)
+ * Prototype: int Winner (sRoll)
  * 
- * Desc: Winner is used to determine if the roll is a winner
+ * Desc: This function will determine if the current roll is a winner for the current bet being checked from
+ *          the BetList
  * 
- * Param:   int roll    Roll of the dice
+ * Param:   sRoll roll  Current roll of the dice being checked 
  * 
- * Create Date: 21/11/17
+ * Create Date: 22/01/18
  * Create By:   DJH
  * 
  * Modification:
- * 211117 DJH Created
+ * 220118 DJH Created
  * 
  */ 
-int PassLine::Winner(int roll){
-    int retVal;             // Return value of method
+std::tuple <int, float> PassLine::Winner(sRoll roll) 
+{
+    int chkRtn;
+    float winAmt = 0.0;       // Amount of winnings if there are winnings
 
-   	std::cout << "PassLine::Winner Begin " << std::endl;
+std::cout << "PassLine::Winner Begin\n";
+    chkRtn = CheckVector(winner, roll);
+std::cout << "PassLine::Winner Return = " << chkRtn << "\n";  
 
-    // Check to see if the roll is in the vector winner
-    retVal = CheckVector(winner, roll);
-
-   	std::cout << "PassLine::Winner End Return " << retVal << std::endl;
-
-	// If the roll was found in the vector of winner This is a win
-    // Calculate the actual winnings. Assign the winnings to the retVal 
-    // to pass back to the Bet
-    if (retVal == retFound){
-
-    	std::cout << "PassLine::Winner call CalculateWin " << std::endl;
-       
-    	retVal = CalculateWin();
-    	std::cout << "PassLine::Winner return CalculateWin " << retVal << std::endl;
+    if (chkRtn == retFound)
+    {
+//        winAmt = amount * (oddsN / oddsD);
+//std::cout << "winAmt = " << winAmt << "\n";
+//std::cout << "amount = " << amount << "\n";
+//std::cout << "oddsN = " << oddsN << "\n";
+//std::cout << "oddsD = " << oddsD << "\n";
     }
-
-   	std::cout << "  Winnings = " << retVal << std::endl;
-
-    return retVal;
-}   // Winner
+    
+    return std::make_tuple(chkRtn, winAmt);
+    
+}   // PassLine::Winner
 
 /**
  * Name: Loser
  *
- * Prototype: virtual int Loser (int)
+ * Prototype: int Loser (sRoll)
  * 
- * Desc: Loser is used to determine if the roll is a loser
+ * Desc: This function will determine if the current roll is a Loser for the current bet being checked from
+ *          the BetList
  * 
- * Param:   int roll    Roll of the dice
+ * Param:   sRoll roll  Current roll of the dice being checked 
  * 
- * Create Date: 21/11/17
+ * Create Date: 22/01/18
  * Create By:   DJH
  * 
  * Modification:
- * 211117 DJH Created
+ * 220118 DJH Created
  * 
  */ 
-int PassLine::Loser(int roll){
-    int retVal;             // Return value of method
-
-   	std::cout << "PassLine::Loser Begin " << std::endl;
-
-    // Check to see if the roll is in the vector winner
-    retVal = CheckVector(loser, roll);
-
-    if (retVal == retFound){
-    	retVal = amount * -1;   // The losing amount is the amount of the bet
-    }
-
-   	std::cout << "  Losing amount = " << retVal << std::endl;
-
+int PassLine::Loser(sRoll roll) 
+{
+    int chkRtn;
+    int retVal = retGood;
+std::cout << "PassLine::Loser Begin\n";
+    chkRtn = CheckVector(loser, roll);
+std::cout << "PassLine::Loser Return = " << chkRtn << "\n";  
+    
     return retVal;
-}   // Loser
+    
+}   // PassLine::Loser
 
+/**
+ * Name: Assign
+ *
+ * Prototype: int Assign (sRoll)
+ * 
+ * Desc: This function will determine if the current roll is a Assign for the current bet being checked from
+ *          the BetList
+ * 
+ * Param:   sRoll roll  Current roll of the dice being checked 
+ * 
+ * Create Date: 22/01/18
+ * Create By:   DJH
+ * 
+ * Modification:
+ * 220118 DJH Created
+ * 
+ */ 
+int PassLine::Assign(sRoll roll) 
+{
+    int chkRtn;
+    int retVal = retGood;
+std::cout << "PassLine::Assign Begin\n";
+    chkRtn = CheckVector(assign, roll);
+std::cout << "PassLine::Assign Return = " << chkRtn << "\n";  
+    
+    return retVal;
+    
+}   // PassLine::Loser
