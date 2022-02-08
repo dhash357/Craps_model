@@ -134,6 +134,7 @@ int Bet::GetAmount (void){
  * 22/01/18 DJH Created
  * 
  */ 
+
 std::string Bet::GetBetType (void){
 
     std::string retVal;
